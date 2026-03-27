@@ -7,20 +7,826 @@
 			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 		/>
 
-		<title>reveal.js</title>
+		<title>Overreacting – from React to Hotwire</title>
 
 		<link rel="stylesheet" href="dist/reset.css" />
 		<link rel="stylesheet" href="dist/reveal.css" />
-		<link rel="stylesheet" href="dist/theme/black.css" />
-
-		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="dist/theme/white.css" />
 		<link rel="stylesheet" href="dist/plugin/highlight/monokai.css" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Martian+Mono&display=swap" />
+		<style>
+			:root {
+				--r-background-color: rgb(245, 245, 240);
+				--r-main-color: rgb(85, 85, 80);
+				--r-heading-color: rgb(17, 17, 16);
+				--r-main-font-size: 32px;
+				--react-color: #61dafb;
+				--hotwire-color: #e8301e;
+			}
+			.reveal, .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+				font-family: "DM Serif Display", Georgia, serif;
+				text-transform: none;
+			}
+			.reveal p, .reveal li {
+				font-family: "Martian Mono", monospace;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+
+				<!-- Title -->
+				<section>
+					<h1 >Overreacting – from <em style="color: var(--react-color)">React</em> to <span style="color: var(--hotwire-color);">Hotwire</span></h1>
+					<p>Igor Aleksandrov,</br>Tropical on Rails 2026</p>
+				</section>
+
+				<!-- Who am I? -->
+				<section>
+					<div style="display: flex; align-items: center; gap: 2em;">
+						<div style="flex: 2; text-align: left;">
+							<h2>A technical gig</h2>
+							<ul>
+								<li>On Rails since 2009 (RoR 2.2+)</li>
+								<li>CTO and co-founder of JetRockets</li>
+								<li>Docker Captain</li>
+								<li>Open-Source enthusiast</li>
+								<li>Serial "Tropicaner"</li>
+							</ul>
+						</div>
+						<div style="flex: 1;">
+							<img src="assets/igor.jpeg" style="width: 100%; border-radius: 8px; object-fit: cover;" />
+						</div>
+					</div>
+				</section>
+
+				<!-- A serial immigrant -->
+				<section>
+					<h2>A serial immigrant</h2>
+					<ul>
+						<li>Originally from Russia.</li>
+						<li>Since March 2022 we have lived in Georgia 🇬🇪 (the country).</li>
+						<li>Moved to the U.S. on July 1st, 2025.</li>
+						<li>Settled in Georgia (the state).</li>
+					</ul>
+				</section>
+
+				<!-- Six years ago -->
+				<section>
+					<p style="font-size: 1.1em;">Six years ago we started building a React SPA</p>
+					<div style="display: flex; justify-content: space-around; align-items: center; margin-top: 2em; font-size: 2.2em;">
+						<span style="font-family: cursive; font-weight: bold;">JetRockets</span>
+						<span><strong>SAFARI</strong> <em>portal</em></span>
+					</div>
+				</section>
+
+				<!-- Awards -->
+				<section>
+					<h2>And we got some badges</h2>
+					<ul>
+						<li>Travel Weekly Magellan Gold Award, 2023</li>
+						<li>World Travel Tech Awards, 2023</li>
+						<li>DEVIES Awards, 2023</li>
+						<li>Web Excellence Award, 2023</li>
+						<li>And more…</li>
+					</ul>
+				</section>
+
+				<!-- Decision to switch -->
+				<section>
+					<p style="font-size: 1.5em;">In 2024 we decided to switch back to Rails SSR…</p>
+				</section>
+
+				<!-- Reasons to share -->
+				<section>
+					<p style="font-size: 1.5em;">And there are reasons why I decided to share this…</p>
+				</section>
+
+				<!-- RDD -->
+				<section>
+					<p style="font-size: 1.5em;">I am tired of Resume-Driven Development (RDD)</p>
+				</section>
+
+				<!-- CRUD monkey -->
+				<section>
+					<p style="font-size: 1.5em;">I am proud to be a CRUD monkey</p>
+				</section>
+
+				<!-- SafariPortal section header -->
+				<section>
+					<p style="font-size: 1.5em;">Our React SPA: SafariPortal in June 2024</p>
+				</section>
+
+				<!-- SafariPortal details -->
+				<section>
+					<h2>Our React SPA: SafariPortal in June 2024</h2>
+					<ul>
+						<li>Itinerary builder &amp; travel operations software for high-end travel agents and tour operators</li>
+						<li>Creates stunning interactive itineraries quickly and easily</li>
+						<li>Scale:
+							<ul>
+								<li>174,512 code lines</li>
+								<li>53 unique routes</li>
+								<li>2000+ files (1,045 JS (43.6%), 1,351 TS (56.4%))</li>
+								<li>178 packages in dependencies</li>
+								<li>&gt;20 supported languages</li>
+							</ul>
+						</li>
+						<li>Team: 12 developers working on it</li>
+					</ul>
+				</section>
+
+				<!-- Platform scale -->
+				<section>
+					<h2>Platform scale</h2>
+					<ul>
+						<li>174,512 code lines</li>
+						<li>53 unique routes</li>
+						<li>2000+ files (1,045 JS (43.6%), 1,351 TS (56.4%))</li>
+						<li>178 packages in dependencies</li>
+						<li>&gt;20 supported languages</li>
+					</ul>
+				</section>
+
+				<!-- The team -->
+				<section>
+					<h2>The team</h2>
+					<ul>
+						<li>8 developers</li>
+						<li>2 QA engineers</li>
+						<li>1 manager</li>
+					</ul>
+				</section>
+
+				<!-- Technology choices -->
+				<section>
+					<h2>The technology choices we made</h2>
+					<p><strong>Frontend</strong></p>
+					<ul>
+						<li>Create React App (CRA)</li>
+						<li>Redux for state management</li>
+						<li>React Router</li>
+						<li>Axios for API calls</li>
+						<li>I18n-js</li>
+					</ul>
+					<p><strong>Backend</strong></p>
+					<ul>
+						<li>Rails API</li>
+						<li>REST endpoints + JSON responses</li>
+					</ul>
+				</section>
+
+				<!-- Why React in 2020? -->
+				<section>
+					<p style="font-size: 1.5em;">Why React in 2020?</p>
+				</section>
+
+				<!-- Because everybody used it -->
+				<section>
+					<p style="font-size: 1.5em;">Because everybody used it…</p>
+				</section>
+
+				<!-- Rails frontend landscape in 2020 -->
+				<section>
+					<h2>The Rails frontend landscape in 2020</h2>
+					<p>What Rails offered for frontend in 2020:</p>
+					<ul>
+						<li>Rails 6.0 – released April 2019</li>
+						<li>Webpacker – default for JavaScript bundling</li>
+						<li>Stimulus – just released (early 2018), still maturing</li>
+					</ul>
+					<p>Turbo didn't exist yet! (released December 2020).</p>
+					<p>Hotwire – not announced until December 2020.</p>
+				</section>
+
+				<!-- React ecosystem in 2020 -->
+				<section>
+					<h2>The React ecosystem in 2020</h2>
+					<ul>
+						<li>Mature ecosystem with Create React App</li>
+						<li>Proven patterns for complex SPAs</li>
+						<li>Rich component libraries and tooling</li>
+						<li>Team expertise and hiring pool</li>
+					</ul>
+					<p>Our decision: for a complex itinerary builder with rich interactions, React felt like the safer, more mature choice.</p>
+				</section>
+
+				<!-- What Was Working Well -->
+				<section>
+					<p style="font-size: 1.5em;">What Was Working Well</p>
+				</section>
+
+				<!-- The good parts -->
+				<section>
+					<h2>The good parts</h2>
+					<p><strong>Rich Interactive UI</strong></p>
+					<ul>
+						<li>Complex itinerary builders with drag-and-drop</li>
+						<li>PDF generation and previews (with performance issues)</li>
+					</ul>
+					<p><strong>Developer Experience</strong></p>
+					<ul>
+						<li>Hot reloading with CRA</li>
+						<li>Component reusability across different modules</li>
+					</ul>
+					<p><strong>"Modern Development"</strong></p>
+				</section>
+
+				<!-- The Growing Pains -->
+				<section>
+					<p style="font-size: 1.5em;">The Growing Pains</p>
+				</section>
+
+				<!-- Where things started to hurt -->
+				<section>
+					<h2>Where things started to hurt</h2>
+					<p><strong>Development velocity</strong></p>
+					<ul>
+						<li>Redux boilerplate for simple itinerary updates</li>
+						<li>Build times getting longer as features grew</li>
+					</ul>
+					<p><strong>Deployment complexity</strong></p>
+					<ul>
+						<li>Coordination between frontend and backend</li>
+					</ul>
+				</section>
+
+				<!-- Code: savePage -->
+				<section>
+					<pre><code class="language-javascript" data-trim data-noescape>
+import axiosApi from 'utils/axios';
+import { getAccountId } from 'api/auth';
+
+export async function savePage({ id, data, lockVersion, prev, apply, rollback }) {
+  sessionStorage.setItem('hideConfirmChangesForCurrentTab', '1'); // suppress self-broadcast
+  apply(id, data); // optimistic UI
+  try {
+    const accountId = getAccountId();
+    const res = await axiosApi.patch(`/acc/${accountId}/pages/${id}`, {
+      ...data, lockVersion, currentStep: 'page',
+    });
+    return res.data;
+  } catch (e) {
+    if (e?.axiosResponse?.status === 409) throw new Error('Conflict: stale lock_version');
+    rollback(id, prev);
+    throw e;
+  } finally {
+    sessionStorage.removeItem('hideConfirmChangesForCurrentTab');
+  }
+}
+					</code></pre>
+				</section>
+
+				<!-- What was really going bad -->
+				<section>
+					<h2>What was really going bad</h2>
+					<p><strong>Team cognitive load</strong></p>
+					<ul>
+						<li>Context switching between React logic and Rails backend</li>
+						<li>State management debugging for complex workflows</li>
+						<li>API contract maintenance</li>
+					</ul>
+					<p><strong>Responsibility problems</strong></p>
+				</section>
+
+				<!-- 2024 motto -->
+				<section>
+					<p style="font-size: 1.3em;">Our 2024 motto:<br>"Limited developers, unlimited ambition"</p>
+				</section>
+
+				<!-- Transform to CRM -->
+				<section>
+					<h2>From itinerary builder → full-cycle travel CRM</h2>
+					<p style="font-size: 0.8em;">June 2024 – today</p>
+					<ul>
+						<li>📋 Task manager – project coordination for travel teams</li>
+						<li>👥 Contact management – client and vendor relationships</li>
+						<li>💰 Financials (invoicing, expenses, payment integrations)</li>
+						<li>Booking module</li>
+						<li>📝 Form builder – custom client intake forms</li>
+						<li>New version of the Itinerary builder</li>
+					</ul>
+				</section>
+
+				<!-- React bottleneck -->
+				<section>
+					<h2>React was becoming our bottleneck</h2>
+					<p>Each new feature required:</p>
+					<ul>
+						<li>Backend developer (Rails API)</li>
+						<li>Frontend developer (React)</li>
+						<li>Manager coordination</li>
+						<li>API contract design</li>
+						<li>State management planning</li>
+						<li>Integration testing</li>
+					</ul>
+				</section>
+
+				<!-- The AI Factor -->
+				<section>
+					<p style="font-size: 1.5em;">The AI Factor (2024)</p>
+				</section>
+
+				<!-- AI changed the game -->
+				<section>
+					<h2>In 2024 AI changed the development game</h2>
+					<p>We all became full-stack developers.</p>
+					<p>Stakeholders' expectations shifted dramatically:</p>
+					<ul>
+						<li>"If AI can write code, why is development still slow?"</li>
+						<li>Pressure to deliver features faster than ever</li>
+						<li>"AI should help prevent errors, not create complexity."</li>
+					</ul>
+					<p>Quality expectations increased alongside speed demands.</p>
+				</section>
+
+				<!-- HotWire experience -->
+				<section>
+					<p style="font-size: 1.5em;">Within 2023–2024 we got a huge Hotwire experience</p>
+				</section>
+
+				<!-- Completed projects -->
+				<section>
+					<h2>Completed Projects</h2>
+					<ul>
+						<li>Orbit</li>
+						<li>OneTribe</li>
+						<li>SchoolsOut</li>
+						<li>Raisify</li>
+						<li>Casper</li>
+						<li>RPI</li>
+						<li>Saymore</li>
+					</ul>
+					<p>And more…</p>
+				</section>
+
+				<!-- What we confirmed -->
+				<section>
+					<h2>What we confirmed</h2>
+					<p><strong>A single developer can do everything.</strong></p>
+					<ul>
+						<li>No frontend/backend coordination needed</li>
+						<li>A single developer could own a complete feature end-to-end</li>
+					</ul>
+					<p><strong>Hotwire + Turbo + Tailwind stack boosts development velocity.</strong></p>
+					<ul>
+						<li>The team size went down to 1–2 developers</li>
+						<li>Features that took weeks now take days</li>
+						<li>Less context switching, more flow state</li>
+						<li>Server-rendered, but felt like a SPA</li>
+					</ul>
+				</section>
+
+				<!-- Decision quote -->
+				<section>
+					<p style="font-size: 1.3em;">"Let's start building new features in Rails and keep the existing React app running."</p>
+				</section>
+
+				<!-- Problems we knew we'd face -->
+				<section>
+					<h2>The problems we knew we'd face</h2>
+					<p><strong>Authentication complexity</strong></p>
+					<ul>
+						<li>Two apps, one auth system – JWT in React, cookie-based in Rails</li>
+						<li>Security considerations</li>
+					</ul>
+					<p><strong>Deployment coordination</strong></p>
+					<ul>
+						<li>Asset management between two systems</li>
+						<li>Route coordination and conflicts</li>
+					</ul>
+					<p><strong>User Experience</strong></p>
+					<ul>
+						<li>Seamless transitions between React and Rails sections</li>
+						<li>Consistent UI/UX across different technologies</li>
+					</ul>
+				</section>
+
+				<!-- Migration Strategy Overview -->
+				<section>
+					<p style="font-size: 1.5em;">Migration Strategy Overview</p>
+				</section>
+
+				<!-- Architecture: Nginx routing -->
+				<section>
+					<h2>Phase 1: Nginx routing</h2>
+					<p>Incoming request → <strong>Nginx</strong></p>
+					<ul>
+						<li>"api" subdomain → <strong>Rails</strong> (container: safariportal-web)</li>
+						<li>Everything else → <strong>React</strong> (container: safariportal-react)</li>
+					</ul>
+				</section>
+
+				<!-- Hybrid approach -->
+				<section>
+					<h2>The hybrid approach – Safari Portal architecture</h2>
+					<p>Legacy Features (React SPA)</p>
+					<ul>
+						<li>Itinerary Builder (complex drag-and-drop)</li>
+						<li>PDF rendering system</li>
+						<li>Existing user workflows</li>
+					</ul>
+					<p>New Features (Rails + Hotwire)</p>
+					<ul>
+						<li>Task Manager, Contact Management, Financials, Form Builder</li>
+					</ul>
+					<p>Shared Infrastructure</p>
+					<ul>
+						<li>Authentication (Rodauth), Common navigation</li>
+					</ul>
+				</section>
+
+				<!-- Phase 2: Kamal/Thruster -->
+				<section>
+					<h2>Phase 2: Single container</h2>
+					<p>Incoming request → <strong>kamal-proxy (Traefik)</strong> → port 80 → <strong>Thruster</strong></p>
+					<ul>
+						<li>Static files served directly</li>
+						<li>Dynamic content → <strong>Puma (Rails)</strong></li>
+					</ul>
+					<p><em>container: safariportal-web</em></p>
+				</section>
+
+				<!-- Where is React? -->
+				<section>
+					<p style="font-size: 1.5em;">Where is React in this scheme?</p>
+				</section>
+
+				<!-- React is in static files -->
+				<section>
+					<h2>React lives in static files</h2>
+					<p>Thruster serves the built React app as static files.</p>
+					<p>Rails handles everything else dynamically.</p>
+					<p>One container. One deploy. Zero Nginx.</p>
+				</section>
+
+				<!-- React Rendering: controller -->
+				<section>
+					<h2>React Rendering (controller)</h2>
+					<pre><code class="language-ruby" data-trim>
+class ReactController < ApplicationController
+  include ActionView::Helpers::AssetUrlHelper
+  include ViteRails::TagHelpers
+
+  layout "react"
+
+  def index
+    if Rails.env.development?
+      redirect_to request.original_url.sub(/:\d+/, ":8080")
+    else
+      render file: Rails.public_path.join("react/index.html")
+    end
+  end
+end
+					</code></pre>
+				</section>
+
+				<!-- React Rendering: routing -->
+				<section>
+					<h2>React Rendering (routing)</h2>
+					<pre><code class="language-ruby" data-trim>
+Rails.application.routes.draw do
+  constraints DomainConstraint.domain(:account) do
+    # ...
+    constraints ->(r) { !r.xhr? && r.format.html? } do
+      get "/*path", to: "react#index"
+    end
+  end
+end
+					</code></pre>
+				</section>
+
+				<!-- Deployment -->
+				<section>
+					<p style="font-size: 1.5em;">Deployment</p>
+				</section>
+
+				<!-- Deployment: GitHub Actions -->
+				<section>
+					<h2>Deployment: GitHub Actions</h2>
+					<p><strong>Build React Job</strong></p>
+					<pre><code class="language-yaml" data-trim>
+- yarn install
+- yarn build
+- aws s3 cp --recursive \
+    build s3://&lt;bucket&gt;/{{inputs.sha_short}}
+					</code></pre>
+					<p><strong>Kamal Deploy Job</strong></p>
+					<pre><code class="language-yaml" data-trim>
+- aws s3 cp --recursive \
+    s3://&lt;bucket&gt;/&lt;last_folder&gt;/ \
+    ${{ github.workspace }}/frontend/build
+- kamal deploy
+					</code></pre>
+				</section>
+
+				<!-- Docker Image Integration -->
+				<section>
+					<h2>Docker Image Integration</h2>
+					<pre><code class="language-dockerfile" data-trim>
+# Dockerfile
+
+FROM base
+
+USER 1000:1000
+
+COPY --chown=rails:rails --from=build /rails /rails
+COPY --chown=rails:rails frontend/build/ ./public/react/
+
+CMD ["./bin/thrust", "./bin/rails", "server"]
+					</code></pre>
+				</section>
+
+				<!-- Shared Authentication -->
+				<section>
+					<p style="font-size: 1.5em;">Shared Authentication</p>
+				</section>
+
+				<!-- Shared Authentication detail -->
+				<section>
+					<h2>Shared Authentication</h2>
+					<p>We've already been using Rodauth</p>
+					<ul>
+						<li>Rodauth is modular and highly configurable</li>
+						<li>React app: Rodauth configuration with JWT-based session management</li>
+						<li>Rails app: new Rodauth configuration with traditional cookie-based session management</li>
+					</ul>
+					<p>The question – <strong>how to share session between the apps?</strong></p>
+				</section>
+
+				<!-- Rodauth: login redirect -->
+				<section>
+					<pre><code class="language-ruby" data-trim>
+class RodauthMain < RodauthBase
+  include AccountRedirects
+
+  configure do
+    # ...
+
+    login_redirect do
+      if uses_two_factor_authentication?
+        otp_auth_path
+      else
+        rails_routes.auth_jwt_path(
+          redirect_uri: account_initial_path,
+          format: :turbo_stream
+        )
+      end
+    end
+  end
+end
+					</code></pre>
+				</section>
+
+				<!-- RodauthController: jwt action -->
+				<section>
+					<pre><code class="language-ruby" data-trim>
+class RodauthController < ApplicationController
+
+  # ...
+
+  def jwt
+    rodauth_api = Rodauth::Rails.rodauth(:api, account: Current.user)
+    access_token, refresh_token = rodauth_api.generate_jwt_tokens
+
+    render turbo_stream: [
+      turbo_stream.set_local_storage_item("accessToken", access_token),
+      turbo_stream.set_local_storage_item("refreshToken", refresh_token),
+      turbo_stream.redirect_to(params["redirect_uri"].presence || root_path)
+    ]
+  end
+end
+					</code></pre>
+				</section>
+
+				<!-- Outcomes -->
+				<section>
+					<p style="font-size: 1.5em;">Outcomes</p>
+				</section>
+
+				<!-- Rails is a one person framework -->
+				<section>
+					<h2>Rails is a one person framework</h2>
+					<p>Feature iteration speed</p>
+					<ul>
+						<li>Customer feedback → production in hours, not days.</li>
+						<li>A/B testing new flows and feature flagging became trivial.</li>
+						<li>Stakeholders can see changes immediately.</li>
+					</ul>
+					<p>Team Happiness</p>
+					<ul>
+						<li>One developer can finish a task from beginning to end.</li>
+					</ul>
+				</section>
+
+				<!-- AI amplification effect -->
+				<section>
+					<h2>AI amplification effect</h2>
+					<ul>
+						<li>Rails conventions + AI = extreme productivity</li>
+						<li>RepoPrompt + superpowers-ruby makes Rails AI-native</li>
+						<li>One developer with AI delivering faster than previous 2-developer teams</li>
+					</ul>
+				</section>
+
+				<!-- Pull requests per month -->
+				<section>
+					<h2>Pull requests merged per month</h2>
+				</section>
+
+				<!-- What Was Harder Than Expected -->
+				<section>
+					<p style="font-size: 1.5em;">What Was Harder Than Expected</p>
+				</section>
+
+				<!-- JS world overcentralized around React -->
+				<section>
+					<h2>The JS world is overcentralized around React</h2>
+					<p>It is hard (almost impossible) to find vanilla JS alternatives for:</p>
+					<ul>
+						<li>react-dates (12k stars) – Easepick is archived</li>
+						<li>react-select (28k stars) – closest: Choices.js</li>
+						<li>react-dnd (21k stars)</li>
+						<li>react-tagsinput (1.4k stars)</li>
+					</ul>
+				</section>
+
+				<!-- Turbo-mount -->
+				<section>
+					<h2>Luckily we have turbo-mount</h2>
+					<p><a href="https://github.com/skryukov/turbo-mount">github.com/skryukov/turbo-mount</a></p>
+					<ul>
+						<li>Last year we built a chat with GetStream (getstream.io/chat).</li>
+						<li>GetStream offers only a React SDK — turbo-mount bridges the gap.</li>
+					</ul>
+				</section>
+
+				<!-- Hybrid UI in practice -->
+				<section>
+					<h2>The hybrid UI in practice</h2>
+					<p>The Messaging page mixes both worlds seamlessly:</p>
+					<ul>
+						<li>Navigation, layout, page shell → <strong>Rails</strong></li>
+						<li>Chat widget → <strong>React component</strong> (via turbo-mount)</li>
+						<li>Schedule Message modal → <strong>Rails</strong> again</li>
+					</ul>
+				</section>
+
+				<!-- What if you need to embed Rails into React? -->
+				<section>
+					<p style="font-size: 1.5em;">What if you need to embed Rails into React?</p>
+				</section>
+
+				<!-- Rails views inside the React app -->
+				<section>
+					<h2>Rails views inside the React app</h2>
+					<ul>
+						<li>Itinerary builder → originally written in React</li>
+						<li>Book Button settings modal → Rails view rendered inside it</li>
+						<li>Tab navigation inside the modal → powered by Turbo</li>
+					</ul>
+				</section>
+
+				<!-- How? -->
+				<section>
+					<p style="font-size: 1.5em;">How?</p>
+				</section>
+
+				<!-- With iframes -->
+				<section>
+					<h2>With iframes</h2>
+					<ul>
+						<li>The React app renders an iframe as a container</li>
+						<li>The iframe content is loaded from Rails</li>
+						<li>The modal is rendered with the standard modal ViewComponent</li>
+						<li>A tiny Stimulus controller handles communication with React</li>
+					</ul>
+				</section>
+
+				<!-- IframeModalController code -->
+				<section>
+					<pre><code class="language-javascript" data-trim>
+class IframeModalController extends Controller {
+  closeEvent(event) {
+    window.parent.postMessage('closeModal', '*');
+  }
+
+  closeAfterSubmitEvent(event) {
+    const submitter = event?.detail?.formSubmission?.submitter;
+    const success = event?.detail?.success;
+
+    if (!submitter) return;
+    if (!submitter.dataset.ifameModalCloseOnClick) return;
+    if (!success) return;
+
+    this.closeEvent();
+  }
+}
+					</code></pre>
+				</section>
+
+				<!-- Showtime -->
+				<section>
+					<p style="font-size: 1.5em;">Showtime</p>
+				</section>
+
+				<!-- What we got out of these two years -->
+				<section>
+					<h2>What we got out of these two years?</h2>
+					<ul>
+						<li>"We are coding monkeys!" – DHH</li>
+						<li>90% of CRUDs are the same and almost nobody likes CSS.</li>
+						<li>We want to make a full-stack developer out of everyone.</li>
+					</ul>
+				</section>
+
+				<!-- What are we missing in CSS? -->
+				<section>
+					<h2>What are we missing in CSS?</h2>
+					<p>CSS is inheritance, specificity, and cascade. And those are problems.</p>
+					<p>What we need is isolation, reusability, and easy modification.</p>
+				</section>
+
+				<!-- Front-end world is React-focused -->
+				<section>
+					<p style="font-size: 1.5em;">Do you remember that the front-end world is highly React focused?</p>
+				</section>
+
+				<!-- And it affected the Rails ecosystem -->
+				<section>
+					<h2>And it affected the Rails ecosystem a lot</h2>
+					<ul>
+						<li>Tailwind</li>
+						<li>ViewComponent</li>
+						<li>Turbo Morphing</li>
+						<li>etc…</li>
+					</ul>
+				</section>
+
+				<!-- Reuse best approaches -->
+				<section>
+					<p style="font-size: 1.5em;">And we wanted to reuse the best working approaches</p>
+				</section>
+
+				<!-- ui.jetrockets.com teaser -->
+				<section>
+					<p style="font-size: 1.5em;">ui.jetrockets.com</p>
+				</section>
+
+				<!-- ui.jetrockets.com details -->
+				<section>
+					<h2>ui.jetrockets.com</h2>
+					<ul>
+						<li>A comprehensive Rails 8 component library</li>
+						<li>Rails 7+, ViewComponent, TailwindCSS 4.0, and Stimulus</li>
+						<li>Provides a set of reusable UI components</li>
+						<li>AI-ready and native
+							<ul>
+								<li>Claude agent built in</li>
+								<li>YAML description of every component</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<!-- Inspired by shadcn -->
+				<section>
+					<h2>Inspired by the shadcn React library</h2>
+					<pre><code class="language-erb" data-trim>
+&lt;%= ui.alert variant: :success do %&gt;
+  &lt;%= ui.alert_icon "check-circle" %&gt;
+  &lt;%= ui.alert_title "Success!" %&gt;
+  &lt;%= ui.alert_description "Your changes have been saved." %&gt;
+&lt;% end %&gt;
+					</code></pre>
+				</section>
+
+				<!-- 30+ reusable components -->
+				<section>
+					<p style="font-size: 1.5em;">30+ reusable components</p>
+				</section>
+
+				<!-- Semantic Color System -->
+				<section>
+					<p style="font-size: 1.5em;">Semantic Color System</p>
+				</section>
+
+				<!-- The gem -->
+				<section>
+					<p style="font-size: 1.5em;">The gem</p>
+				</section>
+
+				<!-- Thank you -->
+				<section>
+					<h2>Thank you! AMA.</h2>
+					<ul>
+						<li>github.com/igor-alexandrov</li>
+						<li>linkedin.com/in/igor-aleksandrov</li>
+						<li>x.com/igor_alexandrov</li>
+					</ul>
+				</section>
+
 			</div>
 		</div>
 
@@ -29,13 +835,8 @@
 		<script src="dist/plugin/markdown.js"></script>
 		<script src="dist/plugin/highlight.js"></script>
 		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
-
-				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
 			});
 		</script>
