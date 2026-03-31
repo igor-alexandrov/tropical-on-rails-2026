@@ -42,6 +42,7 @@
 	</head>
 	<body>
 		<div class="reveal">
+			<img src="assets/jetrockets.png" style="position: fixed; bottom: 8px; left: 24px; height: 64px; opacity: 0.7; z-index: 100; pointer-events: none;" />
 			<div class="slides">
 
 				<!-- Title -->
@@ -90,6 +91,7 @@
 				<!-- Six years ago -->
 				<section>
 					<h2 class="r-fit-text">The story</h2>
+					<img src="assets/safari-portal.webp" style="height: 80px; object-fit: contain; margin-top: 0.5em;" />
 				</section>
 
 				<section style="text-align: left;">
@@ -136,7 +138,7 @@
 				<section style="text-align: left;">
 					<div style="display: flex; align-items: center; gap: 2em;">
 						<div style="flex: 2;">
-							<h2>What React offered in 2020?</h2>
+							<h2 class="r-fit-text">What React offered in 2020?</h2>
 							<ul>
 								<li class="fragment">Mature ecosystem with Create React App</li>
 								<li class="fragment">Proven patterns for complex SPAs</li>
@@ -148,10 +150,16 @@
 							<img src="assets/react.png" style="width: 70%;" />
 						</div>
 					</div>
+					<div style="display: flex; gap: 1em; margin-top: 3em;">
+						<img src="assets/builder-1.png" style="flex: 1; width: 0; object-fit: cover; border-radius: 8px;" />
+						<img src="assets/builder-2.png" style="flex: 1; width: 0; object-fit: cover; border-radius: 8px;" />
+						<img src="assets/builder-3.png" style="flex: 1; width: 0; object-fit: cover; border-radius: 8px;" />
+					</div>
 				</section>
 
 				<section>
-					<h2 class="r-fit-text">React felt like the safer,</br>more mature choice.</h2>
+					<h2 class="r-fit-text">Overall, React felt like the safer,</br>more mature choice.</h2>
+					<img src="assets/builder-1.gif" style="width: 100%; border-radius: 8px;" />
 
 					<aside class="notes">
 						<p>For a complex itinerary builder with rich interactions, React felt like the safer,more mature choice.</p>
@@ -168,41 +176,16 @@
 						<li>Web Excellence Award, 2023</li>
 						<li>And more…</li>
 					</ul>
-					<div style="display: flex; justify-content: center; align-items: center; gap: 2em; margin-top: 1em;">
-						<img src="assets/magellan.png" style="height: 160px; object-fit: contain;" />
-						<img src="assets/devies.png" style="height: 160px; object-fit: contain;" />
-						<img src="assets/wea.svg" style="height: 160px; object-fit: contain;" />
+					<div style="display: flex; gap: 1em; margin-top: 3em; height: 160px;">
+						<img src="assets/magellan.png" style=" flex: 1; object-fit: contain; border-radius: 8px;" />
+						<img src="assets/devies.png" style=" flex: 1;  object-fit: contain; border-radius: 8px;" />
+						<img src="assets/wtta.png" style=" flex: 1;  object-fit: contain; border-radius: 8px;" />
+						<img src="assets/wea.webp" style=" flex: 1;  object-fit: contain; border-radius: 8px;" />
 					</div>
 				</section>
 
-
-				<!-- Decision to switch -->
-				<section>
-					<p style="font-size: 1.5em;">In 2024 we decided to switch back to Rails SSR…</p>
-				</section>
-
-				<!-- Reasons to share -->
-				<section>
-					<p style="font-size: 1.5em;">And there are reasons why I decided to share this…</p>
-				</section>
-
-				<!-- RDD -->
-				<section>
-					<p style="font-size: 1.5em;">I am tired of Resume-Driven Development (RDD)</p>
-				</section>
-
-				<!-- CRUD monkey -->
-				<section>
-					<p style="font-size: 1.5em;">I am proud to be a CRUD monkey</p>
-				</section>
-
-				<!-- SafariPortal section header -->
-				<section>
-					<p style="font-size: 1.5em;">Our React SPA: SafariPortal in June 2024</p>
-				</section>
-
 				<!-- SafariPortal details -->
-				<section>
+				<section style="text-align: left;">
 					<h2>Our React SPA: SafariPortal in June 2024</h2>
 					<ul>
 						<li>Itinerary builder &amp; travel operations software for high-end travel agents and tour operators</li>
@@ -220,30 +203,8 @@
 					</ul>
 				</section>
 
-				<!-- Platform scale -->
-				<section>
-					<h2>Platform scale</h2>
-					<ul>
-						<li>174,512 code lines</li>
-						<li>53 unique routes</li>
-						<li>2000+ files (1,045 JS (43.6%), 1,351 TS (56.4%))</li>
-						<li>178 packages in dependencies</li>
-						<li>&gt;20 supported languages</li>
-					</ul>
-				</section>
-
-				<!-- The team -->
-				<section>
-					<h2>The team</h2>
-					<ul>
-						<li>8 developers</li>
-						<li>2 QA engineers</li>
-						<li>1 manager</li>
-					</ul>
-				</section>
-
 				<!-- Technology choices -->
-				<section>
+				<section style="text-align: left;">
 					<h2>The technology choices we made</h2>
 					<p><strong>Frontend</strong></p>
 					<ul>
@@ -260,23 +221,8 @@
 					</ul>
 				</section>
 
-				<!-- Why React in 2020? -->
-				<section>
-					<p style="font-size: 1.5em;">Why React in 2020?</p>
-				</section>
-
-				<!-- Because everybody used it -->
-				<section>
-					<p style="font-size: 1.5em;">Because everybody used it…</p>
-				</section>
-
-				<!-- What Was Working Well -->
-				<section>
-					<p style="font-size: 1.5em;">What Was Working Well</p>
-				</section>
-
 				<!-- The good parts -->
-				<section>
+				<section style="text-align: left;">
 					<h2>The good parts</h2>
 					<p><strong>Rich Interactive UI</strong></p>
 					<ul>
@@ -291,83 +237,129 @@
 					<p><strong>"Modern Development"</strong></p>
 				</section>
 
-				<!-- The Growing Pains -->
-				<section>
-					<p style="font-size: 1.5em;">The Growing Pains</p>
+				<!-- Decision to switch -->
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">In 2024 we decided to switch back to Rails SSR…</h2>
+					<p class="fragment">Because of multiple growing pains.</p>
+				</section>
+
+				<!-- RDD -->
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">Reason #1 – RDD</h2>
+					<p class="fragment">RDD stands for resume-driven development. I got tired of it.</p>
+
+					<aside class="notes">
+						<p>
+							Resume Driven Development at SafariPortal looked like the perfectly defensible engineering decision every stakeholder nods along to: a React SPA with Redux for state management, a clean JSON API backend in Rails, and the full ceremony of a "modern" frontend architecture. When we built it in 2020, you could point to it at a conference and nobody would raise an eyebrow — React was the industry standard, SPAs were how serious applications were built, and choosing anything else required justification. The stack looked great on a job posting and felt even better to describe in a technical interview.
+						</p>
+					</aside>
 				</section>
 
 				<!-- Where things started to hurt -->
-				<section>
-					<h2>Where things started to hurt</h2>
-					<p><strong>Development velocity</strong></p>
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">Where things started to hurt?</h2>
 					<ul>
-						<li>Redux boilerplate for simple itinerary updates</li>
-						<li>Build times getting longer as features grew</li>
+						<li class="fragment">Redux boilerplate for simple itinerary updates.</li>
+						<li class="fragment">Build times getting longer as features grew.</li>
+						<li class="fragment">Coordination between frontend and backend decreeses the development speed and efficiency.</li>
 					</ul>
-					<p><strong>Deployment complexity</strong></p>
-					<ul>
-						<li>Coordination between frontend and backend</li>
-					</ul>
+
+					<aside class="notes">
+						<p>
+							The problem was that it was optimized for impressiveness, not for the actual work SafariPortal needed to do. The application was fundamentally a form-heavy, data-dense CRM — exactly the kind of software Rails was built for. But instead, every new feature required a Redux action, a reducer, an API serializer, a React component, and a coordinator sitting between the backend and frontend developers to make sure they weren't blocking each other. Shipping a new form field touched seven files across two conceptual applications. The architecture created the appearance of sophistication while quietly taxing every sprint. It wasn't until we faced a hard deadline — four new major modules in a single year — that the true cost became impossible to rationalize away.
+						</p>
+					</aside>
 				</section>
 
 				<!-- Code: savePage -->
-				<section>
-					<pre><code class="language-javascript" data-trim data-noescape>
-import axiosApi from 'utils/axios';
-import { getAccountId } from 'api/auth';
-
-export async function savePage({ id, data, lockVersion, prev, apply, rollback }) {
-  sessionStorage.setItem('hideConfirmChangesForCurrentTab', '1'); // suppress self-broadcast
-  apply(id, data); // optimistic UI
-  try {
-    const accountId = getAccountId();
-    const res = await axiosApi.patch(`/acc/${accountId}/pages/${id}`, {
-      ...data, lockVersion, currentStep: 'page',
-    });
-    return res.data;
-  } catch (e) {
-    if (e?.axiosResponse?.status === 409) throw new Error('Conflict: stale lock_version');
-    rollback(id, prev);
-    throw e;
-  } finally {
-    sessionStorage.removeItem('hideConfirmChangesForCurrentTab');
-  }
-}
-					</code></pre>
+				<section data-background-image="assets/code-1.png">
 				</section>
 
-				<!-- What was really going bad -->
-				<section>
-					<h2>What was really going bad</h2>
-					<p><strong>Team cognitive load</strong></p>
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">What it was for the team?</h2>
 					<ul>
-						<li>Context switching between React logic and Rails backend</li>
-						<li>State management debugging for complex workflows</li>
-						<li>API contract maintenance</li>
+						<li class="fragment">Context switching between React logic and Rails backend.</li>
+						<li class="fragment">State management debugging for complex workflows.</li>
+						<li class="fragment">API contract maintenance and responsibility problems.</li>
 					</ul>
-					<p><strong>Responsibility problems</strong></p>
+
+					<aside class="notes">
+						<p>
+							And the tax wasn't just measured in lines of code or story points — it was measured in mental energy. Every developer on the team had to hold two separate mental models simultaneously: the Rails domain on the backend and the React/Redux state model on the frontend. Context switching between them wasn't free. A backend developer touching the frontend needed to re-learn component conventions, prop drilling patterns, and whatever state shape Redux had evolved into since they last looked. A frontend developer filing a bug had to trace execution across the API boundary before they could even begin to understand the problem. New team members faced an onboarding experience that was essentially two separate applications masquerading as one. The cognitive overhead was invisible in sprint planning, never showed up in velocity metrics, and never made it into a retrospective — but it was there, compounding quietly, draining the team's capacity to think about the actual business problems they were hired to solve.
+						</p>
+					</aside>
 				</section>
 
-				<!-- 2024 motto -->
-				<section>
-					<p style="font-size: 1.3em;">Our 2024 motto:<br>"Limited developers, unlimited ambition"</p>
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">AI didn't save us…</h2>
+
+					<ul>
+						<li class="fragment">Split architecture forces AI to reason across two codebases simultaneously.</li>
+						<li class="fragment">Generated code breaks at the seam — controller shape ≠ Redux expectations.</li>
+						<li class="fragment">Two poorly documented systems that happen to talk over JSON.</li>
+						<li class="fragment">Simple architecture amplifies AI, complexity taxes every prompt.</li>
+					</ul>
+
+					<aside class="notes">
+						<p>
+							When AI coding assistants went mainstream in 2023, we expected them to multiply our productivity. Instead, they exposed just how fragmented our architecture had become. Ask an AI to implement a feature in SafariPortal and it immediately ran into the same coordination problem our developers did — except it couldn't ask clarifying questions in a standup. The context required to reason about any non-trivial feature was split across two codebases with fundamentally different conventions, languages, and mental models: ActiveRecord models and service objects on one side, Redux store and component hierarchy on the other.
+						</p>
+						<p>
+							To implement even a modest feature end-to-end, the AI needed to hold all of that simultaneously — and the seams between the two applications were exactly where it lost the thread. It would generate a perfectly reasonable Rails controller action that didn't match the shape the React component expected, or a Redux reducer that diverged from what the serializer actually returned. Rails conventions are deeply internalized in every major AI model — trained on decades of idiomatic code. But the moment you bolt a bespoke React/Redux layer on top and expect the AI to reason across that boundary, you've thrown away most of that advantage. Simple architecture amplifies AI productivity. Complexity taxes it — and we were paying that tax on every prompt.
+						</p>
+					</aside>
+				</section>
+
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">Things got even worth…</h2>
+					<ul>
+						<li>We all became full-stack developers (not really).</li>
+						<li>
+							Stakeholders' expectations shifted dramatically.
+							<ul>
+								<li>"If AI can write code, why is development still slow?"</li>
+								<li>"Why are you writing this feature from scratch?"</li>
+								<li>"AI should help prevent errors, not create complexity."</li>
+							</ul>
+						</li>
+						<li>Quality expectations increased alongside speed demands</li>
+					</ul>
+				</section>
+
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">From itinerary builder → full-cycle travel CRM</h2>
 				</section>
 
 				<!-- Transform to CRM -->
-				<section>
-					<h2>From itinerary builder → full-cycle travel CRM</h2>
-					<p style="font-size: 0.8em;">June 2024 – today</p>
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">Planned trasformation from June 2024 – today</h2>
 					<ul>
-						<li>📋 Task manager – project coordination for travel teams</li>
-						<li>👥 Contact management – client and vendor relationships</li>
-						<li>💰 Financials (invoicing, expenses, payment integrations)</li>
-						<li>Booking module</li>
-						<li>📝 Form builder – custom client intake forms</li>
-						<li>New version of the Itinerary builder</li>
+						<li>📋 Task manager – project coordination for travel teams.</li>
+						<li>👥 Contact management – client and vendor relationships.</li>
+						<li>💰 Financials (invoicing, expenses, payment integrations) and itinerary booking module.</li>
+						<li>📝 Form builder – custom client intake forms.</li>
+						<li>New version of the itinerary builder.</li>
 					</ul>
+
+					<aside class="notes">
+						<p>
+							In June of 2024, Rachel West, founder and owner of SafariPortal, came to us with the idea of implementing 4 new modules: Task Manager, Contacts, Financials, and Form Builder. Not incremental improvements — four entirely new pillars that would transform the product from an itinerary builder into a full-cycle travel CRM. The timeline was aggressive. The team size wasn't changing.
+							This is the moment that forces honesty. When resources are unconstrained, you can afford the overhead of complexity — the coordination meetings, the context switching, the extra files touched per feature. But when you're operating lean, every inefficiency in your stack is a direct hit to your capacity. The React/Redux ceremony that felt manageable at a comfortable pace became genuinely dangerous at the speed the business needed. We weren't looking for an elegant architectural solution. We were looking for survival.
+						</p>
+					</aside>
 				</section>
 
-				<!-- React bottleneck -->
+				<!-- 2024 motto -->
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">Our 2024 motto:<br>"Limited developers, unlimited ambition"</h2>
+
+					<aside class="notes">
+						<p>
+							And that's the context in which Hotwire stopped being an interesting experiment and started being a lifeline. One developer shipping what previously required two, with less coordination overhead and a codebase that AI tools could actually reason about end-to-end. The motto wasn't aspirational — it was a constraint we had to engineer around. Limited developers, unlimited ambition forced us to find an architecture that punched above its weight. Rails gave us that.
+						</p>
+					</aside>
+				</section>
+<!--
 				<section>
 					<h2>React was becoming our bottleneck</h2>
 					<p>Each new feature required:</p>
@@ -379,34 +371,15 @@ export async function savePage({ id, data, lockVersion, prev, apply, rollback })
 						<li>State management planning</li>
 						<li>Integration testing</li>
 					</ul>
-				</section>
+				</section> -->
 
-				<!-- The AI Factor -->
-				<section>
+				<!-- <section>
 					<p style="font-size: 1.5em;">The AI Factor (2024)</p>
-				</section>
-
-				<!-- AI changed the game -->
-				<section>
-					<h2>In 2024 AI changed the development game</h2>
-					<p>We all became full-stack developers.</p>
-					<p>Stakeholders' expectations shifted dramatically:</p>
-					<ul>
-						<li>"If AI can write code, why is development still slow?"</li>
-						<li>Pressure to deliver features faster than ever</li>
-						<li>"AI should help prevent errors, not create complexity."</li>
-					</ul>
-					<p>Quality expectations increased alongside speed demands.</p>
-				</section>
+				</section> -->
 
 				<!-- HotWire experience -->
-				<section>
-					<p style="font-size: 1.5em;">Within 2023–2024 we got a huge Hotwire experience</p>
-				</section>
-
-				<!-- Completed projects -->
-				<section>
-					<h2>Completed Projects</h2>
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">Within 2023–2024 we got a huge Hotwire experience</h2>
 					<ul>
 						<li>Orbit</li>
 						<li>OneTribe</li>
@@ -417,11 +390,18 @@ export async function savePage({ id, data, lockVersion, prev, apply, rollback })
 						<li>Saymore</li>
 					</ul>
 					<p>And more…</p>
+
+					<div style="display: flex; gap: 1em; margin-top: 2em; height: 120px;">
+						<img src="assets/orbit.svg" style=" flex: 1; object-fit: contain; border-radius: 8px;" />
+						<img src="assets/onetribe.svg" style=" flex: 1;  object-fit: contain; border-radius: 8px;" />
+						<img src="assets/schoolsout.svg" style=" flex: 1;  object-fit: contain; border-radius: 8px;" />
+						<img src="assets/saymore.svg" style=" flex: 1;  object-fit: contain; border-radius: 8px;" />
+					</div>
 				</section>
 
 				<!-- What we confirmed -->
-				<section>
-					<h2>What we confirmed</h2>
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">What we confirmed</h2>
 					<p><strong>A single developer can do everything.</strong></p>
 					<ul>
 						<li>No frontend/backend coordination needed</li>
@@ -438,7 +418,10 @@ export async function savePage({ id, data, lockVersion, prev, apply, rollback })
 
 				<!-- Decision quote -->
 				<section>
-					<p style="font-size: 1.3em;">"Let's start building new features in Rails and keep the existing React app running."</p>
+					<blockquote>
+						&ldquo;What if we will start building new features in Rails and keep the existing React app running?&rdquo;
+					</blockquote>
+					<p>Alexey Solilin, co-founder of JetRockets</p>
 				</section>
 
 				<!-- Problems we knew we'd face -->
