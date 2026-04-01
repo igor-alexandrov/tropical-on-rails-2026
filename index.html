@@ -525,6 +525,118 @@ end
 					</code></pre>
 				</section>
 
+				<!-- Shared Authentication -->
+				<section>
+					<h2 class="r-fit-text">Authentication</h2>
+				</section>
+
+				<!-- Shared Authentication detail -->
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">Rodauth did all the job</h2>
+					<p class="fragment">Rodauth did <strong>almost</strong> all the job.</p>
+					<ul>
+						<li class="fragment">Rodauth is a middleware that sits before the Rails app.</li>
+						<li class="fragment">Sign-in, recover password, OTP pages where rewritten to Rails.</li>
+						<li class="fragment">React app: Rodauth configuration with JWT-based session management.</li>
+						<li class="fragment">Rails app: new Rodauth configuration with traditional cookie-based session management.</li>
+					</ul>
+
+					<p class="fragment">
+						<a href="https://github.com/jeremyevans/rodauth">https://github.com/jeremyevans/rodauth</a>
+					</p>
+				</section>
+
+				<section>
+					<h2>React session sharing</h2>
+					<div class="r-stack">
+						<pre><code style="padding: 1em; border-radius: 8px" class="language-ruby" data-trim data-line-numbers>
+class RodauthMain < RodauthBase
+  include AccountRedirects
+
+  configure do
+    # ...
+
+    login_redirect do
+      if uses_two_factor_authentication?
+        otp_auth_path
+      else
+				rails_routes.auth_jwt_path(
+					redirect_uri: account_initial_path,
+					format: :turbo_stream
+				)
+			end
+    end
+  end
+end
+						</code></pre>
+						<pre class="fragment"><code style="padding: 1em; border-radius: 8px" class="language-ruby" data-trim data-line-numbers="11-14">
+class RodauthMain < RodauthBase
+  include AccountRedirects
+
+  configure do
+    # ...
+
+    login_redirect do
+			if uses_two_factor_authentication?
+        otp_auth_path
+      else
+				rails_routes.auth_jwt_path(
+					redirect_uri: account_initial_path,
+					format: :turbo_stream
+				)
+			end
+    end
+  end
+end
+						</code></pre>
+					</div>
+				</section>
+
+				<section>
+					<h2>React session sharing</h2>
+					<div class="r-stack">
+						<pre><code style="padding: 1em; border-radius: 8px" class="language-ruby" data-trim data-line-numbers>
+class RodauthController < ApplicationController
+
+  # ...
+
+  def jwt
+    rodauth_api = Rodauth::Rails.rodauth(:api, account: Current.user)
+    access_token, refresh_token = rodauth_api.generate_jwt_tokens
+
+    render turbo_stream: [
+      turbo_stream.set_local_storage_item("accessToken", access_token),
+      turbo_stream.set_local_storage_item("refreshToken", refresh_token),
+      turbo_stream.redirect_to(
+				params["redirect_uri"].presence || root_path
+			)
+    ]
+  end
+end
+						</code></pre>
+
+						<pre class="fragment"><code style="padding: 1em; border-radius: 8px" class="language-ruby" data-trim data-line-numbers="10-11">
+class RodauthController < ApplicationController
+
+  # ...
+
+  def jwt
+    rodauth_api = Rodauth::Rails.rodauth(:api, account: Current.user)
+    access_token, refresh_token = rodauth_api.generate_jwt_tokens
+
+    render turbo_stream: [
+      turbo_stream.set_local_storage_item("accessToken", access_token),
+      turbo_stream.set_local_storage_item("refreshToken", refresh_token),
+      turbo_stream.redirect_to(
+				params["redirect_uri"].presence || root_path
+			)
+    ]
+  end
+end
+						</code></pre>
+					</div>
+				</section>
+
 				<!-- Deployment -->
 				<section>
 					<p style="font-size: 1.5em;">Deployment</p>
@@ -563,68 +675,6 @@ COPY --chown=rails:rails --from=build /rails /rails
 COPY --chown=rails:rails frontend/build/ ./public/react/
 
 CMD ["./bin/thrust", "./bin/rails", "server"]
-					</code></pre>
-				</section>
-
-				<!-- Shared Authentication -->
-				<section>
-					<p style="font-size: 1.5em;">Shared Authentication</p>
-				</section>
-
-				<!-- Shared Authentication detail -->
-				<section>
-					<h2>Shared Authentication</h2>
-					<p>We've already been using Rodauth</p>
-					<ul>
-						<li>Rodauth is modular and highly configurable</li>
-						<li>React app: Rodauth configuration with JWT-based session management</li>
-						<li>Rails app: new Rodauth configuration with traditional cookie-based session management</li>
-					</ul>
-					<p>The question – <strong>how to share session between the apps?</strong></p>
-				</section>
-
-				<!-- Rodauth: login redirect -->
-				<section>
-					<pre><code class="language-ruby" data-trim>
-class RodauthMain < RodauthBase
-  include AccountRedirects
-
-  configure do
-    # ...
-
-    login_redirect do
-      if uses_two_factor_authentication?
-        otp_auth_path
-      else
-        rails_routes.auth_jwt_path(
-          redirect_uri: account_initial_path,
-          format: :turbo_stream
-        )
-      end
-    end
-  end
-end
-					</code></pre>
-				</section>
-
-				<!-- RodauthController: jwt action -->
-				<section>
-					<pre><code class="language-ruby" data-trim>
-class RodauthController < ApplicationController
-
-  # ...
-
-  def jwt
-    rodauth_api = Rodauth::Rails.rodauth(:api, account: Current.user)
-    access_token, refresh_token = rodauth_api.generate_jwt_tokens
-
-    render turbo_stream: [
-      turbo_stream.set_local_storage_item("accessToken", access_token),
-      turbo_stream.set_local_storage_item("refreshToken", refresh_token),
-      turbo_stream.redirect_to(params["redirect_uri"].presence || root_path)
-    ]
-  end
-end
 					</code></pre>
 				</section>
 
