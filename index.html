@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="dist/reset.css" />
 		<link rel="stylesheet" href="dist/reveal.css" />
 		<link rel="stylesheet" href="dist/theme/white.css" />
-		<link rel="stylesheet" href="dist/plugin/highlight/monokai.css" />
+		<link rel="stylesheet" href="dist/plugin/highlight/github.css" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Martian+Mono&display=swap" />
 		<style>
 			:root {
@@ -419,14 +419,14 @@
 				<!-- Decision quote -->
 				<section>
 					<blockquote>
-						&ldquo;What if we will start building new features in Rails and keep the existing React app running?&rdquo;
+						&ldquo;What if we will start building new features in Rails and keep the existing React app running?&rdquo;
 					</blockquote>
 					<p>Alexey Solilin, co-founder of JetRockets</p>
 				</section>
 
 				<!-- Problems we knew we'd face -->
-				<section>
-					<h2>The problems we knew we'd face</h2>
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">The problems we knew we'd face</h2>
 					<p><strong>Authentication complexity</strong></p>
 					<ul>
 						<li>Two apps, one auth system – JWT in React, cookie-based in Rails</li>
@@ -446,26 +446,22 @@
 
 				<!-- Migration Strategy Overview -->
 				<section>
-					<p style="font-size: 1.5em;">Migration Strategy Overview</p>
+					<h2 class="r-fit-text">Migration Strategy Overview</h2>
 				</section>
 
 				<!-- Architecture: Nginx routing -->
 				<section>
-					<h2>Phase 1: Nginx routing</h2>
-					<p>Incoming request → <strong>Nginx</strong></p>
-					<ul>
-						<li>"api" subdomain → <strong>Rails</strong> (container: safariportal-web)</li>
-						<li>Everything else → <strong>React</strong> (container: safariportal-react)</li>
-					</ul>
+					<h2>Phase 0</h2>
+					<img src="assets/routing-1.png" class="r-stretch" />
 				</section>
 
 				<!-- Hybrid approach -->
-				<section>
-					<h2>The hybrid approach – Safari Portal architecture</h2>
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">The hybrid approach – Safari Portal architecture</h2>
 					<p>Legacy Features (React SPA)</p>
 					<ul>
-						<li>Itinerary Builder (complex drag-and-drop)</li>
-						<li>PDF rendering system</li>
+						<li>Itinerary Builder (complex UI)</li>
+						<li>PDF rendering system (with headless Chrome)</li>
 						<li>Existing user workflows</li>
 					</ul>
 					<p>New Features (Rails + Hotwire)</p>
@@ -481,31 +477,37 @@
 				<!-- Phase 2: Kamal/Thruster -->
 				<section>
 					<h2>Phase 2: Single container</h2>
-					<p>Incoming request → <strong>kamal-proxy (Traefik)</strong> → port 80 → <strong>Thruster</strong></p>
-					<ul>
-						<li>Static files served directly</li>
-						<li>Dynamic content → <strong>Puma (Rails)</strong></li>
-					</ul>
-					<p><em>container: safariportal-web</em></p>
+					<img src="assets/routing-2.png" class="r-stretch" />
 				</section>
 
 				<!-- Where is React? -->
 				<section>
-					<p style="font-size: 1.5em;">Where is React in this scheme?</p>
+					<h2 class="r-fit-text">Where is React in this scheme?</h2>
 				</section>
 
 				<!-- React is in static files -->
 				<section>
-					<h2>React lives in static files</h2>
-					<p>Thruster serves the built React app as static files.</p>
-					<p>Rails handles everything else dynamically.</p>
-					<p>One container. One deploy. Zero Nginx.</p>
+					<h2>Phase 2: Single container</h2>
+					<img src="assets/routing-3.png" class="r-stretch" />
 				</section>
 
-				<!-- React Rendering: controller -->
 				<section>
-					<h2>React Rendering (controller)</h2>
-					<pre><code class="language-ruby" data-trim>
+					<h2>React rendering (routing)</h2>
+					<pre><code style="padding: 1em; border-radius: 8px" class="language-ruby" data-trim data-line-numbers>
+Rails.application.routes.draw do
+  constraints DomainConstraint.domain(:account) do
+    # ...
+    constraints ->(r) { !r.xhr? && r.format.html? } do
+      get "/*path", to: "react#index"
+    end
+  end
+end
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>React rendering (controller)</h2>
+					<pre><code style="padding: 1em; border-radius: 8px" class="language-ruby" data-trim data-line-numbers>
 class ReactController < ApplicationController
   include ActionView::Helpers::AssetUrlHelper
   include ViteRails::TagHelpers
@@ -517,21 +519,6 @@ class ReactController < ApplicationController
       redirect_to request.original_url.sub(/:\d+/, ":8080")
     else
       render file: Rails.public_path.join("react/index.html")
-    end
-  end
-end
-					</code></pre>
-				</section>
-
-				<!-- React Rendering: routing -->
-				<section>
-					<h2>React Rendering (routing)</h2>
-					<pre><code class="language-ruby" data-trim>
-Rails.application.routes.draw do
-  constraints DomainConstraint.domain(:account) do
-    # ...
-    constraints ->(r) { !r.xhr? && r.format.html? } do
-      get "/*path", to: "react#index"
     end
   end
 end
