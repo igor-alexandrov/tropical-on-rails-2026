@@ -525,12 +525,10 @@ end
 					</code></pre>
 				</section>
 
-				<!-- Shared Authentication -->
 				<section>
 					<h2 class="r-fit-text">Authentication</h2>
 				</section>
 
-				<!-- Shared Authentication detail -->
 				<section style="text-align: left;">
 					<h2 class="r-fit-text">Rodauth did all the job</h2>
 					<p class="fragment">Rodauth did <strong>almost</strong> all the job.</p>
@@ -637,44 +635,178 @@ end
 					</div>
 				</section>
 
-				<!-- Deployment -->
 				<section>
-					<p style="font-size: 1.5em;">Deployment</p>
+					<h2 class="r-fit-text">Deployment</h2>
 				</section>
 
 				<!-- Deployment: GitHub Actions -->
 				<section>
 					<h2>Deployment: GitHub Actions</h2>
 					<p><strong>Build React Job</strong></p>
-					<pre><code class="language-yaml" data-trim>
+
+					<div class="r-stack">
+						<pre><code style="padding: 1em; border-radius: 8px" class="language-yaml" data-trim data-line-numbers>
 - yarn install
 - yarn build
+
 - aws s3 cp --recursive \
-    build s3://&lt;bucket&gt;/{{inputs.sha_short}}
-					</code></pre>
+	build s3://&lt;bucket&gt;/{{inputs.sha_short}}
+						</code></pre>
+
+						<pre class="fragment"><code style="padding: 1em; border-radius: 8px" class="language-yaml" data-trim data-line-numbers="4-5">
+- yarn install
+- yarn build
+
+- aws s3 cp --recursive \
+	build s3://&lt;bucket&gt;/{{inputs.sha_short}}
+						</code></pre>
+					</div>
+
 					<p><strong>Kamal Deploy Job</strong></p>
-					<pre><code class="language-yaml" data-trim>
+
+					<div class="r-stack">
+						<pre><code style="padding: 1em; border-radius: 8px" class="language-yaml" data-trim data-line-numbers>
 - aws s3 cp --recursive \
-    s3://&lt;bucket&gt;/&lt;last_folder&gt;/ \
-    ${{ github.workspace }}/frontend/build
+	s3://&lt;bucket&gt;/&lt;last_folder&gt;/ \
+	${{ github.workspace }}/frontend/build
+
 - kamal deploy
-					</code></pre>
+						</code></pre>
+
+						<pre class="fragment"><code style="padding: 1em; border-radius: 8px" class="language-yaml" data-trim data-line-numbers="1-3">
+- aws s3 cp --recursive \
+	s3://&lt;bucket&gt;/&lt;last_folder&gt;/ \
+	${{ github.workspace }}/frontend/build
+
+- kamal deploy
+						</code></pre>
+					</div>
 				</section>
 
 				<!-- Docker Image Integration -->
 				<section>
-					<h2>Docker Image Integration</h2>
-					<pre><code class="language-dockerfile" data-trim>
-# Dockerfile
+					<h2>Deployment: Docker image integration</h2>
+					<div class="r-stack">
+						<pre class=""><code style="padding: 1em; border-radius: 8px" class="language-dockerfile" data-trim data-line-numbers="">
+	# Dockerfile
 
-FROM base
+	# …
 
-USER 1000:1000
+	FROM base
 
-COPY --chown=rails:rails --from=build /rails /rails
-COPY --chown=rails:rails frontend/build/ ./public/react/
+	USER 1000:1000
 
-CMD ["./bin/thrust", "./bin/rails", "server"]
+	COPY --chown=rails:rails --from=build /rails /rails
+	COPY --chown=rails:rails frontend/build/ ./public/react/
+
+	CMD ["./bin/thrust", "./bin/rails", "server"]
+						</code></pre>
+
+						<pre class="fragment"><code style="padding: 1em; border-radius: 8px" class="language-dockerfile" data-trim data-line-numbers="10">
+	# Dockerfile
+
+	# …
+
+	FROM base
+
+	USER 1000:1000
+
+	COPY --chown=rails:rails --from=build /rails /rails
+	COPY --chown=rails:rails frontend/build/ ./public/react/
+
+	CMD ["./bin/thrust", "./bin/rails", "server"]
+						</code></pre>
+					</div>
+				</section>
+
+				<section>
+					<h2 class="r-fit-text">What was harder than we expected?</h2>
+				</section>
+
+				<section>
+					<h2 class="r-fit-text">The JS world is overcentralized on React</h2>
+					<div style="text-align: left;">
+						<p>Sometime It is hard (almost impossible) to find vanilla JS alternatives.</p>
+						<ul>
+							<li>react-dates (12k stars) – Easepick is archived</li>
+							<li>react-select (28k stars) – closest: Choices.js</li>
+							<li>react-dnd (21k stars)</li>
+							<li>react-tagsinput (1.4k stars)</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- Turbo-mount -->
+				<section>
+					<h2 class="r-fit-text">Turbo Mount</h2>
+					<p>Sometimes you just need to mount a React component into a Rails app. Last year we built a chat with GetStream (getstream.io/chat).</p>
+					<p><a href="https://github.com/skryukov/turbo-mount">github.com/skryukov/turbo-mount</a></p>
+					<ul>
+						<li>Last year we built a chat with GetStream (getstream.io/chat).</li>
+						<li>GetStream offers only a React SDK — turbo-mount bridges the gap.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Turbo Mount in action</h2>
+					<img src="assets/turbo-mount-1.png" class="r-stretch" />
+				</section>
+
+				<section>
+					<h2>Turbo Mount in action</h2>
+					<img src="assets/turbo-mount-2.png" class="r-stretch" />
+				</section>
+
+				<!-- What if you need to embed Rails into React? -->
+				<section>
+					<h2 class="r-fit-text">What if you need an opposite integration?</h2>
+				</section>
+
+				<section>
+					<h2>Rails in React</h2>
+					<img src="assets/iframe-1.png" class="r-stretch" />
+				</section>
+
+				<section>
+					<h2>Rails in React</h2>
+					<img src="assets/iframe-2.png" class="r-stretch" />
+				</section>
+
+				<section>
+					<h2 >Rails in React</h2>
+					<img src="assets/iframe-3.png" class="r-stretch" />
+				</section>
+
+				<!-- With iframes -->
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">The solution is – iframes</h2>
+					<ul>
+						<li>The React app renders an <code>iframe</code> as a container</li>
+						<li>The iframe content is loaded from Rails</li>
+						<li>The modal is rendered with the standard modal ViewComponent</li>
+						<li>A tiny Stimulus controller handles communication with React</li>
+					</ul>
+				</section>
+
+				<!-- IframeModalController code -->
+				<section>
+					<pre><code class="language-javascript" data-trim>
+class IframeModalController extends Controller {
+  closeEvent(event) {
+    window.parent.postMessage('closeModal', '*');
+  }
+
+  closeAfterSubmitEvent(event) {
+    const submitter = event?.detail?.formSubmission?.submitter;
+    const success = event?.detail?.success;
+
+    if (!submitter) return;
+    if (!submitter.dataset.ifameModalCloseOnClick) return;
+    if (!success) return;
+
+    this.closeEvent();
+  }
+}
 					</code></pre>
 				</section>
 
@@ -711,97 +843,6 @@ CMD ["./bin/thrust", "./bin/rails", "server"]
 				<!-- Pull requests per month -->
 				<section>
 					<h2>Pull requests merged per month</h2>
-				</section>
-
-				<!-- What Was Harder Than Expected -->
-				<section>
-					<p style="font-size: 1.5em;">What Was Harder Than Expected</p>
-				</section>
-
-				<!-- JS world overcentralized around React -->
-				<section>
-					<h2>The JS world is overcentralized around React</h2>
-					<p>It is hard (almost impossible) to find vanilla JS alternatives for:</p>
-					<ul>
-						<li>react-dates (12k stars) – Easepick is archived</li>
-						<li>react-select (28k stars) – closest: Choices.js</li>
-						<li>react-dnd (21k stars)</li>
-						<li>react-tagsinput (1.4k stars)</li>
-					</ul>
-				</section>
-
-				<!-- Turbo-mount -->
-				<section>
-					<h2>Luckily we have turbo-mount</h2>
-					<p><a href="https://github.com/skryukov/turbo-mount">github.com/skryukov/turbo-mount</a></p>
-					<ul>
-						<li>Last year we built a chat with GetStream (getstream.io/chat).</li>
-						<li>GetStream offers only a React SDK — turbo-mount bridges the gap.</li>
-					</ul>
-				</section>
-
-				<!-- Hybrid UI in practice -->
-				<section>
-					<h2>The hybrid UI in practice</h2>
-					<p>The Messaging page mixes both worlds seamlessly:</p>
-					<ul>
-						<li>Navigation, layout, page shell → <strong>Rails</strong></li>
-						<li>Chat widget → <strong>React component</strong> (via turbo-mount)</li>
-						<li>Schedule Message modal → <strong>Rails</strong> again</li>
-					</ul>
-				</section>
-
-				<!-- What if you need to embed Rails into React? -->
-				<section>
-					<p style="font-size: 1.5em;">What if you need to embed Rails into React?</p>
-				</section>
-
-				<!-- Rails views inside the React app -->
-				<section>
-					<h2>Rails views inside the React app</h2>
-					<ul>
-						<li>Itinerary builder → originally written in React</li>
-						<li>Book Button settings modal → Rails view rendered inside it</li>
-						<li>Tab navigation inside the modal → powered by Turbo</li>
-					</ul>
-				</section>
-
-				<!-- How? -->
-				<section>
-					<p style="font-size: 1.5em;">How?</p>
-				</section>
-
-				<!-- With iframes -->
-				<section>
-					<h2>With iframes</h2>
-					<ul>
-						<li>The React app renders an iframe as a container</li>
-						<li>The iframe content is loaded from Rails</li>
-						<li>The modal is rendered with the standard modal ViewComponent</li>
-						<li>A tiny Stimulus controller handles communication with React</li>
-					</ul>
-				</section>
-
-				<!-- IframeModalController code -->
-				<section>
-					<pre><code class="language-javascript" data-trim>
-class IframeModalController extends Controller {
-  closeEvent(event) {
-    window.parent.postMessage('closeModal', '*');
-  }
-
-  closeAfterSubmitEvent(event) {
-    const submitter = event?.detail?.formSubmission?.submitter;
-    const success = event?.detail?.success;
-
-    if (!submitter) return;
-    if (!submitter.dataset.ifameModalCloseOnClick) return;
-    if (!success) return;
-
-    this.closeEvent();
-  }
-}
-					</code></pre>
 				</section>
 
 				<!-- Showtime -->
