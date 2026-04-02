@@ -764,6 +764,17 @@ end
 					<h2 class="r-fit-text">What if you need an opposite integration?</h2>
 				</section>
 
+				<!-- With iframes -->
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">Iframes!</h2>
+					<ul>
+						<li class="frame nebt">The React app renders an <code>iframe</code> as a container</li>
+						<li>The iframe content is loaded from Rails</li>
+						<li>The modal is rendered with the standard modal ViewComponent</li>
+						<li>A tiny Stimulus controller handles communication with React</li>
+					</ul>
+				</section>
+
 				<section>
 					<h2>Rails in React</h2>
 					<img src="assets/iframe-1.png" class="r-stretch" />
@@ -779,20 +790,10 @@ end
 					<img src="assets/iframe-3.png" class="r-stretch" />
 				</section>
 
-				<!-- With iframes -->
-				<section style="text-align: left;">
-					<h2 class="r-fit-text">The solution is – iframes</h2>
-					<ul>
-						<li class="frame nebt">The React app renders an <code>iframe</code> as a container</li>
-						<li>The iframe content is loaded from Rails</li>
-						<li>The modal is rendered with the standard modal ViewComponent</li>
-						<li>A tiny Stimulus controller handles communication with React</li>
-					</ul>
-				</section>
-
 				<!-- IframeModalController code -->
 				<section>
-					<pre><code class="language-javascript" data-trim>
+					<h2>Stimulus controller</h2>
+					<pre><code style="padding: 1em; border-radius: 8px" class="language-ruby" data-trim data-line-numbers>
 class IframeModalController extends Controller {
   closeEvent(event) {
     window.parent.postMessage('closeModal', '*');
@@ -814,12 +815,12 @@ class IframeModalController extends Controller {
 
 				<!-- Outcomes -->
 				<section>
-					<p style="font-size: 1.5em;">Outcomes</p>
+					<h2 class="r-fit-text">Outcomes</h2>
 				</section>
 
 				<!-- Rails is a one person framework -->
 				<section>
-					<h2>Rails is a one person framework</h2>
+					<h2 class="r-fit-text">Rails is a one person framework</h2>
 					<p>Feature iteration speed</p>
 					<ul>
 						<li>Customer feedback → production in hours, not days.</li>
@@ -829,6 +830,15 @@ class IframeModalController extends Controller {
 					<p>Team Happiness</p>
 					<ul>
 						<li>One developer can finish a task from beginning to end.</li>
+					</ul>
+				</section>
+
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">What we got out of these two years?</h2>
+					<ul>
+						<li>"We are coding monkeys!" – DHH.</li>
+						<li>90% of CRUDs are the same and almost nobody likes CSS.</li>
+						<li>We want to make a full-stack developer out of everyone.</li>
 					</ul>
 				</section>
 
@@ -849,55 +859,62 @@ class IframeModalController extends Controller {
 
 				<!-- Showtime -->
 				<section>
-					<p style="font-size: 1.5em;">Showtime</p>
+					<h2 class="r-fit-text">Showtime!</h2>
 				</section>
 
-				<!-- What we got out of these two years -->
 				<section>
-					<h2>What we got out of these two years?</h2>
+					<h2 class="r-fit-text">Everybody should be a full-stack</h2>
+				</section>
+
+				<section>
+					<h2 class="r-fit-text">Nobody loves CSS</h2>
+				</section>
+
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">What are we missing in CSS?</h2>
 					<ul>
-						<li>"We are coding monkeys!" – DHH</li>
-						<li>90% of CRUDs are the same and almost nobody likes CSS.</li>
-						<li>We want to make a full-stack developer out of everyone.</li>
+						<li>CSS is inheritance, specificity, and cascade. And those are problems.</li>
+						<li>What we need is isolation, reusability, and easy modification.</li>
 					</ul>
-				</section>
-
-				<!-- What are we missing in CSS? -->
-				<section>
-					<h2>What are we missing in CSS?</h2>
-					<p>CSS is inheritance, specificity, and cascade. And those are problems.</p>
-					<p>What we need is isolation, reusability, and easy modification.</p>
 				</section>
 
 				<!-- Front-end world is React-focused -->
 				<section>
-					<p style="font-size: 1.5em;">Do you remember that the front-end world is highly React focused?</p>
+					<h2 class="r-fit-text">Front-end world is React focused</h2>
 				</section>
 
-				<!-- And it affected the Rails ecosystem -->
-				<section>
-					<h2>And it affected the Rails ecosystem a lot</h2>
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">React affected the Rails ecosystem a lot</h2>
 					<ul>
-						<li>Tailwind</li>
-						<li>ViewComponent</li>
-						<li>Turbo Morphing</li>
-						<li>etc…</li>
+						<li class="fragment">Tailwind</li>
+						<li class="fragment">ViewComponent</li>
+						<li class="fragment">Turbo Morphing</li>
+						<li class="fragment">etc…</li>
 					</ul>
+				</section>
+
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">What did we need?</h2>
+				</section>
+
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">A design system!</h2>
 				</section>
 
 				<!-- Reuse best approaches -->
 				<section>
-					<p style="font-size: 1.5em;">And we wanted to reuse the best working approaches</p>
+					<h2 class="r-fit-text">And we wanted to reuse<br/>the best working approaches</h2>
 				</section>
 
 				<!-- ui.jetrockets.com teaser -->
 				<section>
-					<p style="font-size: 1.5em;">ui.jetrockets.com</p>
+					<h2 class="r-fit-text">ui.jetrockets.com</h2>
+					<img src="assets/ui.jetrockets.com.png" style="height: 20vh; border-radius: 8px;" />
 				</section>
 
 				<!-- ui.jetrockets.com details -->
-				<section>
-					<h2>ui.jetrockets.com</h2>
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">ui.jetrockets.com</h2>
 					<ul>
 						<li>A comprehensive Rails 8 component library</li>
 						<li>Rails 7+, ViewComponent, TailwindCSS 4.0, and Stimulus</li>
