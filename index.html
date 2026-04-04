@@ -899,12 +899,13 @@ class IframeModalController extends Controller {
 
 				<section style="text-align: left;">
 					<h2 class="r-fit-text">A design system!</h2>
+					<p class="fragment">And there is a tradition to announce UI libraries on Tropical on Rails.</p>
 				</section>
 
 				<!-- Reuse best approaches -->
-				<section>
+				<!-- <section>
 					<h2 class="r-fit-text">And we wanted to reuse<br/>the best working approaches</h2>
-				</section>
+				</section> -->
 
 				<!-- ui.jetrockets.com teaser -->
 				<section>
@@ -929,30 +930,44 @@ class IframeModalController extends Controller {
 				</section>
 
 				<!-- Inspired by shadcn -->
-				<section>
-					<h2>Inspired by the shadcn React library</h2>
-					<pre><code class="language-erb" data-trim>
-&lt;%= ui.alert variant: :success do %&gt;
-  &lt;%= ui.alert_icon "check-circle" %&gt;
-  &lt;%= ui.alert_title "Success!" %&gt;
-  &lt;%= ui.alert_description "Your changes have been saved." %&gt;
-&lt;% end %&gt;
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">Inspired by the shadcn/ui library</h2>
+						<pre><code style="padding: 1em; border-radius: 8px" class="language-jsx" data-trim data-line-numbers>
+<Alert>
+  <InfoIcon />
+  <AlertTitle>Heads up!</AlertTitle>
+  <AlertDescription>
+    You can add components and dependencies to your app using the cli.
+  </AlertDescription>
+  <AlertAction>
+    <Button variant="outline">Enable</Button>
+  </AlertAction>
+</Alert>
+					</code></pre>
+					<pre><code style="padding: 1em; border-radius: 8px" class="language-erb" data-trim data-line-numbers>
+<%= ui.alert  do %>
+  <%= ui.alert_icon "check-circle" %>
+  <%= ui.alert_title "Success!" %>
+  <%= ui.alert_description "Your changes have been saved." %>
+<% end %>
 					</code></pre>
 				</section>
 
-				<!-- 30+ reusable components -->
 				<section>
-					<p style="font-size: 1.5em;">30+ reusable components</p>
+					<h2 class="r-fit-text">30+ reusable components</h2>
 				</section>
 
-				<!-- Semantic Color System -->
 				<section>
-					<p style="font-size: 1.5em;">Semantic Color System</p>
+					<h2 class="r-fit-text">Semantic Color System</h2>
+				</section>
+
+				<section>
+					<h2 class="r-fit-text">Kit</h2>
 				</section>
 
 				<!-- The gem -->
 				<section>
-					<p style="font-size: 1.5em;">The gem</p>
+					<h2 class="r-fit-text">The gem</h2>
 				</section>
 
 				<!-- Thank you -->
