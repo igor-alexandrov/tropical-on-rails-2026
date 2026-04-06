@@ -35,8 +35,13 @@
 				font-size: 0.6em;
 			}
 			.reveal li {
-				font-size: 0.6em;
-				margin-bottom: 0.5em;
+				font-size: 1.2rem;
+				margin-bottom: 0.85rem;
+			}
+			.reveal li ul {
+				margin-top: 0.5em;
+				margin-bottom: 1.25em;
+				margin-left: 2.5em;
 			}
 		</style>
 	</head>
@@ -50,7 +55,7 @@
 				<!-- Title -->
 				<section>
 					<h1 >Overreacting – from <em style="color: var(--react-color)">React</em> to <span style="color: var(--hotwire-color);">Hotwire</span></h1>
-					<p>Igor Aleksandrov,</br>Tropical on Rails 2026</p>
+					<p>Igor Aleksandrov,<br>Tropical on Rails 2026</p>
 				</section>
 
 				<!-- Who am I? -->
@@ -180,8 +185,8 @@
 					</ul>
 					<div style="display: flex; gap: 1em; margin-top: 3em; height: 160px;">
 						<img src="assets/magellan.png" style=" flex: 1; object-fit: contain; border-radius: 8px;" />
-						<img src="assets/devies.png" style=" flex: 1;  object-fit: contain; border-radius: 8px;" />
 						<img src="assets/wtta.png" style=" flex: 1;  object-fit: contain; border-radius: 8px;" />
+						<img src="assets/devies.png" style=" flex: 1;  object-fit: contain; border-radius: 8px;" />
 						<img src="assets/wea.webp" style=" flex: 1;  object-fit: contain; border-radius: 8px;" />
 					</div>
 				</section>
@@ -393,11 +398,11 @@
 					</ul>
 					<p>And more…</p>
 
-					<div style="display: flex; gap: 1em; margin-top: 2em; height: 120px;">
-						<img src="assets/orbit.svg" style=" flex: 1; object-fit: contain; border-radius: 8px;" />
-						<img src="assets/onetribe.svg" style=" flex: 1;  object-fit: contain; border-radius: 8px;" />
-						<img src="assets/schoolsout.svg" style=" flex: 1;  object-fit: contain; border-radius: 8px;" />
-						<img src="assets/saymore.svg" style=" flex: 1;  object-fit: contain; border-radius: 8px;" />
+					<div style="display: flex; gap: 2em; margin-top: 2em; align-items: center; justify-content: center;">
+						<img src="assets/orbit.svg" style="height: 60px; width: auto;" />
+						<img src="assets/onetribe.svg" style="height: 60px; width: auto;" />
+						<img src="assets/schoolsout.svg" style="height: 60px; width: auto;" />
+						<img src="assets/saymore.svg" style="height: 60px; width: auto;" />
 					</div>
 				</section>
 
@@ -728,7 +733,7 @@ end
 				<section>
 					<h2 class="r-fit-text">The JS world is overcentralized on React</h2>
 					<div style="text-align: left;">
-						<p>Sometime It is hard (almost impossible) to find vanilla JS alternatives.</p>
+						<p>Sometimes it is hard (almost impossible) to find vanilla JS alternatives.</p>
 						<ul>
 							<li>react-dates (12k stars) – Easepick is archived</li>
 							<li>react-select (28k stars) – closest: Choices.js</li>
@@ -971,8 +976,8 @@ class IframeModalController extends Controller {
 				</section>
 
 				<section>
-					<video controls autoplay style="width: 100%; border-radius: 8px;">
-						<source src="assets/JetRockets UI Components.mp4" type="video/mp4">
+					<video controls style="width: 100%; border-radius: 8px;">
+						<source src="assets/JetRockets UI Components.mp4" type="video/mp4" />
 						Your browser does not support the video tag.
 					</video>
 				</section>
