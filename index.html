@@ -56,6 +56,9 @@
 				<section>
 					<h1 >Overreacting – from <em style="color: var(--react-color)">React</em> to <span style="color: var(--hotwire-color);">Hotwire</span></h1>
 					<p>Igor Aleksandrov,<br>Tropical on Rails 2026</p>
+					<aside class="notes">
+						<p>Welcome everyone. I'm Igor Aleksandrov, CTO and co-founder of JetRockets. Today I'm going to tell you a story about how we spent four years building a React SPA, realized we'd made our lives harder than they needed to be, and then spent the next two years migrating back to Rails. This is not a React-bashing talk — it's an honest post-mortem about choosing the right tool for the job, at the right time.</p>
+					</aside>
 				</section>
 
 				<!-- Who am I? -->
@@ -64,7 +67,7 @@
 						<div style="flex: 2; text-align: left;">
 							<h2>A technical geek</h2>
 							<ul>
-								<li>On Rails since 2009 (RoR 2.2+)</li>
+								<li>On Rails since 2009 (RoR 2.2+)</li>
 								<li>CTO and co-founder of JetRockets</li>
 								<li>Docker Captain</li>
 								<li>Open-Source enthusiast</li>
@@ -75,6 +78,9 @@
 							<img src="assets/igor.jpeg" style="width: 100%; border-radius: 8px; object-fit: cover;" />
 						</div>
 					</div>
+					<aside class="notes">
+						<p>Quick intro — I've been building Rails apps since 2009, which means I was writing Rails before most of you probably knew what a web framework was. I'm CTO and co-founder of JetRockets, a product development agency. I'm a Docker Captain, I love open source, and this is not my first Tropical on Rails — hence "serial Tropicaner".</p>
+					</aside>
 				</section>
 
 				<!-- A serial immigrant -->
@@ -84,31 +90,43 @@
 							<h2>A serial immigrant</h2>
 							<ul>
 								<li>Originally from Russia.</li>
-								<li>Since March 2022 we have lived in Georgia 🇬🇪 (the country).</li>
+								<li>Since March 2022 we have lived in Georgia 🇬🇪 (the country).</li>
 								<li>Moved to the U.S. on July 1st, 2025.</li>
-								<li>Settled in Georgia 🍑 (the state).</li>
+								<li>Settled in Georgia 🍑 (the state).</li>
 							</ul>
 						</div>
 						<div style="flex: 1;">
 							<img src="assets/family.jpeg" style="width: 100%; border-radius: 8px; object-fit: cover;" />
 						</div>
 					</div>
+					<aside class="notes">
+						<p>A little context on me personally. I'm from Russia originally. In March 2022 we made the decision to leave, ended up in Georgia — the country, not the state. Then in July 2025 we made the leap to the US and settled in... Georgia. The state. Yes, I know. Apparently I have a type. At least both have great food.</p>
+					</aside>
 				</section>
 
 				<!-- Six years ago -->
 				<section>
 					<h2 class="r-fit-text">The story</h2>
 					<img src="assets/safari-portal.webp" style="height: 80px; object-fit: contain; margin-top: 0.5em;" />
+					<aside class="notes">
+						<p>The story I'm going to tell you is about SafariPortal — a product we've been building with our client Rachel West for the past six years. Let me give you some context on what it is and how it evolved — because the product's growth is inseparable from the architectural decisions we made.</p>
+					</aside>
 				</section>
 
 				<section style="text-align: left;">
 					<h2>Six years ago…</h2>
 					<p class="fragment">We got a brief to build an itinerary builder for high-end travel agents and tour operators.</p>
+					<aside class="notes">
+						<p>Six years ago, Rachel came to us with a brief: build a tool for high-end travel agents and tour operators to create beautiful, interactive itineraries for their clients. Think luxury safari trips to Kenya, private tours of Japan — the kind of travel where the itinerary itself is part of the experience. The product needed to feel premium, interactive, and capable of generating stunning PDF documents clients would actually want to keep.</p>
+					</aside>
 				</section>
 
 				<section style="text-align: left;">
 					<h2>We decided to build a React SPA with a Rails API backend.</h2>
 					<p class="fragment">We had good reasons for that decision at the time.</p>
+					<aside class="notes">
+						<p>We made the call to build a React SPA backed by a Rails API. And I want to be clear — this was not a thoughtless decision. We had real, defensible reasons. The UI was going to be complex and interactive. We had React expertise on the team. And as I'll show you in a moment, the Rails frontend landscape in 2020 genuinely wasn't ready for what we needed to build.</p>
+					</aside>
 				</section>
 
 				<!-- Rails frontend landscape in 2020 -->
@@ -119,6 +137,9 @@
 						<li class="fragment">Webpacker – default for JavaScript bundling</li>
 						<li class="fragment">Stimulus – just released (early 2018), still maturing</li>
 					</ul>
+					<aside class="notes">
+						<p>Put yourself back in 2020. Rails 6 had just landed. Webpacker was the default for JavaScript — and if you used it, you know how that went. Stimulus had been out for about two years and was still finding its footing. The Rails frontend story was honestly not compelling for a complex interactive application. There was no Turbo, no Hotwire, no morphing. The tools that make Rails a complete frontend solution today simply didn't exist yet.</p>
+					</aside>
 				</section>
 
 				<section>
@@ -127,6 +148,7 @@
 					<img src="assets/dhh-tweet-1.png" style="width: 60%; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);" />
 
 					<aside class="notes">
+						<p>Turbo didn't exist. It would be released in December 2020 — months after we started the project. We couldn't have used it even if we'd wanted to. This isn't hindsight rationalization — the tools literally weren't there.</p>
 						<a href="https://x.com/dhh/status/1341420143239450624">https://x.com/dhh/status/1341420143239450624</a>
 					</aside>
 				</section>
@@ -137,6 +159,7 @@
 					<img src="assets/dhh-tweet-2.png" style="width: 60%; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.12);" />
 
 					<aside class="notes">
+						<p>And Hotwire was still being called "New Magic" by DHH. It wasn't even Hotwire yet. The framework we'd eventually migrate to literally didn't have a name when we were making our architecture decisions. I include these tweets not to excuse the decision, but to show that anyone making the same call in 2020 would have come to the same conclusion.</p>
 						<a href="https://x.com/dhh/status/1275901955995385856">https://x.com/dhh/status/1275901955995385856</a>
 					</aside>
 				</section>
@@ -162,6 +185,9 @@
 						<img src="assets/builder-2.png" style="flex: 1; width: 0; object-fit: cover; border-radius: 8px;" />
 						<img src="assets/builder-3.png" style="flex: 1; width: 0; object-fit: cover; border-radius: 8px;" />
 					</div>
+					<aside class="notes">
+						<p>Meanwhile, React was the clear industry leader. Mature ecosystem, Create React App made setup trivial, Redux gave you predictable state management, and critically — the team knew it well and hiring React developers was straightforward. These screenshots at the bottom are from the actual SafariPortal itinerary builder. This is the kind of rich, interactive UI we were building. React was genuinely the right tool for this, in 2020.</p>
+					</aside>
 				</section>
 
 				<section>
@@ -169,7 +195,7 @@
 					<img src="assets/builder-1.gif" style="width: 100%; border-radius: 8px;" />
 
 					<aside class="notes">
-						<p>For a complex itinerary builder with rich interactions, React felt like the safer,more mature choice.</p>
+						<p>For a complex, drag-and-drop itinerary builder with real-time updates, PDF generation, and rich interactions — React was the right call for 2020. I still believe that. The mistake wasn't choosing React. The mistake was not reassessing when everything changed around us.</p>
 					</aside>
 				</section>
 
@@ -189,6 +215,9 @@
 						<img src="assets/devies.png" style=" flex: 1;  object-fit: contain; border-radius: 8px;" />
 						<img src="assets/wea.webp" style=" flex: 1;  object-fit: contain; border-radius: 8px;" />
 					</div>
+					<aside class="notes">
+						<p>And the product did genuinely well. Multiple industry awards in 2023. Travel Weekly's Magellan Gold is a significant recognition in the travel tech space. The itinerary builder was impressive and clients loved it. I want to emphasize this: SafariPortal was not a failing project. It was a successful product. Which is exactly what makes the growing pains that followed so instructive — these problems don't announce themselves when things are going well.</p>
+					</aside>
 				</section>
 
 				<!-- SafariPortal details -->
@@ -208,6 +237,9 @@
 						</li>
 						<li>Team: 12 developers working on it</li>
 					</ul>
+					<aside class="notes">
+						<p>By June 2024, SafariPortal was a substantial codebase. 174,000 lines of code. 53 routes. Two thousand files. 178 npm packages. 20+ supported languages. At this scale, the architectural decisions you made on day one have compounding consequences. Every file you add touches more files. Every new feature requires understanding more of the system. The complexity tax compounds.</p>
+					</aside>
 				</section>
 
 				<!-- Technology choices -->
@@ -226,6 +258,9 @@
 						<li>Rails API</li>
 						<li>REST endpoints + JSON responses</li>
 					</ul>
+					<aside class="notes">
+						<p>The stack was very much of its era. Create React App for the frontend — which, by 2024, was deprecated and unmaintained. Redux for state management. React Router. Axios. On the backend, a Rails API serving JSON. Two separate applications communicating over HTTP. Clean separation of concerns — and also the source of constant friction. Every feature lived in two places.</p>
+					</aside>
 				</section>
 
 				<!-- The good parts -->
@@ -242,12 +277,18 @@
 						<li>Component reusability across different modules</li>
 					</ul>
 					<p><strong>"Modern Development"</strong></p>
+					<aside class="notes">
+						<p>To be fair, React genuinely served us well in some areas. The drag-and-drop itinerary builder was complex UI and React handled it well. Hot reloading with CRA was a great developer experience. Component reusability across modules was real. I mention this because I want to be balanced — this isn't a "React is bad" talk. React solved real problems for us. The question is whether those benefits justified the overhead as the product matured.</p>
+					</aside>
 				</section>
 
 				<!-- Decision to switch -->
 				<section style="text-align: left;">
 					<h2 class="r-fit-text">In 2024 we decided to switch back to Rails SSR…</h2>
 					<p class="fragment">Because of multiple growing pains.</p>
+					<aside class="notes">
+						<p>In 2024 we made the decision to start building new features in Rails with Hotwire instead of extending the React app. This wasn't an impulsive decision — it was the result of several compounding pain points that had been building for years and became impossible to ignore when the business needed to move fast.</p>
+					</aside>
 				</section>
 
 				<!-- RDD -->
@@ -258,6 +299,9 @@
 					<aside class="notes">
 						<p>
 							Resume Driven Development at SafariPortal looked like the perfectly defensible engineering decision every stakeholder nods along to: a React SPA with Redux for state management, a clean JSON API backend in Rails, and the full ceremony of a "modern" frontend architecture. When we built it in 2020, you could point to it at a conference and nobody would raise an eyebrow — React was the industry standard, SPAs were how serious applications were built, and choosing anything else required justification. The stack looked great on a job posting and felt even better to describe in a technical interview.
+						</p>
+						<p>
+							The problem was that it was optimized for impressiveness, not for the actual work SafariPortal needed to do. The application was fundamentally a form-heavy, data-dense CRM — exactly the kind of software Rails was built for. But instead, every new feature required a Redux action, a reducer, an API serializer, a React component, and a coordinator sitting between the backend and frontend developers to make sure they weren't blocking each other. Shipping a new form field touched seven files across two conceptual applications. The architecture created the appearance of sophistication while quietly taxing every sprint.
 						</p>
 					</aside>
 				</section>
@@ -273,13 +317,19 @@
 
 					<aside class="notes">
 						<p>
-							The problem was that it was optimized for impressiveness, not for the actual work SafariPortal needed to do. The application was fundamentally a form-heavy, data-dense CRM — exactly the kind of software Rails was built for. But instead, every new feature required a Redux action, a reducer, an API serializer, a React component, and a coordinator sitting between the backend and frontend developers to make sure they weren't blocking each other. Shipping a new form field touched seven files across two conceptual applications. The architecture created the appearance of sophistication while quietly taxing every sprint. It wasn't until we faced a hard deadline — four new major modules in a single year — that the true cost became impossible to rationalize away.
+							It wasn't until we faced a hard deadline — four new major modules in a single year — that the true cost became impossible to rationalize away. Redux boilerplate for every state update. Build times crossing the five-minute mark. Frontend and backend developers constantly waiting on each other. These weren't edge cases — they were the rhythm of every sprint.
+						</p>
+						<p>
+							The tax wasn't just measured in lines of code or story points — it was measured in mental energy. Every developer had to hold two separate mental models simultaneously: the Rails domain on the backend and the React/Redux state model on the frontend. A backend developer touching the frontend needed to re-learn component conventions, prop drilling patterns, and whatever state shape Redux had evolved into since they last looked. A frontend developer filing a bug had to trace execution across the API boundary before they could even begin to understand the problem. The cognitive overhead was invisible in sprint planning and never showed up in velocity metrics — but it was there, compounding quietly.
 						</p>
 					</aside>
 				</section>
 
 				<!-- Code: savePage -->
 				<section data-background-image="assets/code-1.png">
+					<aside class="notes">
+						<p>Look at this. This is actual production code from SafariPortal — a single function to save a page in the itinerary builder. It handles optimistic UI updates, session storage flags to suppress self-broadcast events, lock version conflict detection, and rollback logic on failure. It's not bad code. It's the right code for what it needed to do. But consider the surface area you need to understand to reason about it: the Redux store shape, the API contract, the session storage convention, the error handling. All of this for a save operation. Now multiply that across 53 routes.</p>
+					</aside>
 				</section>
 
 				<section style="text-align: left;">
@@ -331,10 +381,16 @@
 						</li>
 						<li>Quality expectations increased alongside speed demands</li>
 					</ul>
+					<aside class="notes">
+						<p>And then the AI hype hit stakeholders. Which you'd think would help. It didn't — not in the way we hoped. Everyone read the same blog posts about 10x productivity gains. Stakeholders started asking why features still took weeks when AI was supposed to make everything instant. The reality is that AI amplifies good architecture and exposes bad architecture. Ours was bad, and AI made that more visible, not less. Meanwhile quality expectations were rising — faster delivery and fewer bugs, simultaneously.</p>
+					</aside>
 				</section>
 
 				<section style="text-align: left;">
 					<h2 class="r-fit-text">From itinerary builder → full-cycle travel CRM</h2>
+					<aside class="notes">
+						<p>The business ambition was growing while the team size wasn't. We weren't just maintaining an itinerary builder anymore — we were being asked to transform the entire product into a full travel CRM. That's when the architectural debt became an existential constraint.</p>
+					</aside>
 				</section>
 
 				<!-- Transform to CRM -->
@@ -404,6 +460,9 @@
 						<img src="assets/schoolsout.svg" style="height: 60px; width: auto;" />
 						<img src="assets/saymore.svg" style="height: 60px; width: auto;" />
 					</div>
+					<aside class="notes">
+						<p>While SafariPortal was struggling with its React overhead, we were building other products at JetRockets — all on Rails with Hotwire. Orbit, OneTribe, SchoolsOut, Raisify, Casper, RPI, Saymore. These weren't toy projects — real products with real users and real business requirements. And in every single one, we saw the same pattern: smaller teams, faster delivery, happier developers. The data was accumulating.</p>
+					</aside>
 				</section>
 
 				<!-- What we confirmed -->
@@ -421,14 +480,20 @@
 						<li>Less context switching, more flow state</li>
 						<li>Server-rendered, but felt like a SPA</li>
 					</ul>
+					<aside class="notes">
+						<p>The numbers were hard to argue with. On these Hotwire projects, a single developer could own a complete feature from database schema to deployed UI. Team sizes of one or two developers were shipping features that would have required frontend-backend pairs in React. Features that took weeks now took days. It felt like a SPA but ran like a server-rendered app — fast initial load, no hydration delay, no API round-trips for every interaction.</p>
+					</aside>
 				</section>
 
 				<!-- Decision quote -->
 				<section>
 					<blockquote>
-						&ldquo;What if we will start building new features in Rails and keep the existing React app running?&rdquo;
+						&ldquo;What if we will start building new features in Rails and keep the existing React app running?&rdquo;
 					</blockquote>
 					<p>Alexey Solilin, co-founder of JetRockets</p>
+					<aside class="notes">
+						<p>This was the question Alexey Solilin, my co-founder, asked in a planning meeting. It sounds obvious in hindsight, but at the time it felt radical — almost like giving up. Don't migrate the existing React app. Don't try to rewrite 174,000 lines of code. Just stop adding to it. Build new features in Rails. Let the React app exist as a legacy system for the parts it already does well. The question unlocked everything.</p>
+					</aside>
 				</section>
 
 				<!-- Problems we knew we'd face -->
@@ -449,17 +514,26 @@
 						<li>Seamless transitions between React and Rails sections</li>
 						<li>Consistent UI/UX across different technologies</li>
 					</ul>
+					<aside class="notes">
+						<p>We weren't naive about the challenges. Running two authentication systems side by side is genuinely complex — JWT tokens for the React SPA, cookie-based sessions for Rails. Deploying two applications that users experience as one requires careful orchestration. And making the UX seamless across different rendering technologies is non-trivial. The navigation has to feel consistent, transitions can't reveal the seam between the two apps. We went in with eyes open. Let me show you how we solved each of these.</p>
+					</aside>
 				</section>
 
 				<!-- Migration Strategy Overview -->
 				<section>
 					<h2 class="r-fit-text">Migration Strategy Overview</h2>
+					<aside class="notes">
+						<p>Let me walk you through how we actually solved these problems. The migration happened in two phases, and each phase solved a specific set of constraints. Phase zero was about coexistence. Phase two was about operational simplicity.</p>
+					</aside>
 				</section>
 
 				<!-- Architecture: Nginx routing -->
 				<section>
 					<h2>Phase 0</h2>
 					<img src="assets/routing-1.png" class="r-stretch" />
+					<aside class="notes">
+						<p>Phase zero was about containment. We used Nginx to route traffic at the subdomain level: the API subdomain went to the Rails container, everything else went to the React container. Two separate deployments, two separate processes. The user sees one domain, one product — but under the hood it's two completely independent applications. This bought us time to start building new features in Rails without touching a line of the React app. Low risk, immediate benefits.</p>
+					</aside>
 				</section>
 
 				<!-- Hybrid approach -->
@@ -479,23 +553,35 @@
 					<ul>
 						<li>Authentication (Rodauth), Common navigation</li>
 					</ul>
+					<aside class="notes">
+						<p>This is the coexistence architecture at its core. We drew a clear line. The legacy React SPA handles what it's already built for — the complex itinerary builder with drag-and-drop, PDF rendering with headless Chrome, the existing user workflows that work well. All four new modules — task manager, contacts, financials, form builder — are built entirely in Rails with Hotwire. Shared infrastructure means one Rodauth instance handles authentication for both. One navigation component spans both. The user never knows they're crossing a boundary.</p>
+					</aside>
 				</section>
 
 				<!-- Phase 2: Kamal/Thruster -->
 				<section>
 					<h2>Phase 2: Single container</h2>
 					<img src="assets/routing-2.png" class="r-stretch" />
+					<aside class="notes">
+						<p>Phase two was about operational simplicity — eliminating the operational overhead of two separate deployments. We moved to a single container. Kamal proxy in front handling SSL termination and routing, Thruster handling static files and HTTP/2 push, Puma running Rails behind it. One deploy pipeline, one container, zero Nginx configuration. Much simpler to reason about, monitor, and operate in production.</p>
+					</aside>
 				</section>
 
 				<!-- Where is React? -->
 				<section>
 					<h2 class="r-fit-text">Where is React in this scheme?</h2>
+					<aside class="notes">
+						<p>The obvious question. If it's a single Rails container, where does the React SPA live? We're not running two web servers anymore. The answer is surprisingly simple.</p>
+					</aside>
 				</section>
 
 				<!-- React is in static files -->
 				<section>
 					<h2>Phase 2: Single container</h2>
 					<img src="assets/routing-3.png" class="r-stretch" />
+					<aside class="notes">
+						<p>React lives in static files. We build the React app in CI, upload the output to S3 tagged by commit SHA. During the Kamal deploy, we download that build and copy it into the Rails public directory. Thruster serves it as static files — it never even hits Puma. Rails handles everything else dynamically. One container, one deploy, and the React app is just a directory in public/react/.</p>
+					</aside>
 				</section>
 
 				<section>
@@ -510,6 +596,9 @@ Rails.application.routes.draw do
   end
 end
 					</code></pre>
+					<aside class="notes">
+						<p>The routing is elegant. A catch-all route at the bottom of routes.rb sends any unmatched HTML request to the ReactController. XHR requests and API calls pass through normally to their Rails handlers. The React app catches anything that Rails doesn't have an explicit route for. This means as we build more Rails routes, they automatically take precedence over the React catch-all — the migration happens route by route without any configuration changes.</p>
+					</aside>
 				</section>
 
 				<section>
@@ -530,10 +619,16 @@ class ReactController < ApplicationController
   end
 end
 					</code></pre>
+					<aside class="notes">
+						<p>The controller is almost embarrassingly simple. In development, redirect to the Vite dev server running on port 8080 — so React developers keep their hot reloading. In production, render the pre-built index.html directly from the public directory. That's the entire bridge between Rails routing and the React SPA. No proxy, no middleware, no special configuration. Just a file serve.</p>
+					</aside>
 				</section>
 
 				<section>
 					<h2 class="r-fit-text">Authentication</h2>
+					<aside class="notes">
+						<p>Authentication was the hardest problem to solve cleanly. We had JWT tokens living in React's localStorage and cookie-based sessions in Rails. The user should never have to log in twice — but the two authentication systems are fundamentally different. Here's how we bridged them.</p>
+					</aside>
 				</section>
 
 				<section style="text-align: left;">
@@ -549,6 +644,9 @@ end
 					<p class="fragment">
 						<a href="https://github.com/jeremyevans/rodauth">https://github.com/jeremyevans/rodauth</a>
 					</p>
+					<aside class="notes">
+						<p>We'd already been using Rodauth in Rails for the API. Rodauth is modular and pluggable enough to run two completely separate configurations in the same application — one for the API with JWT tokens, one for the Rails app with cookie sessions. The login page, password recovery, and OTP flows were rewritten as Rails views. Now both apps authenticate through one login form, one Rails endpoint. The problem was: after login, how do you get JWT tokens into the React app's localStorage without making the user do anything extra?</p>
+					</aside>
 				</section>
 
 				<section>
@@ -595,6 +693,9 @@ class RodauthMain < RodauthBase
 end
 						</code></pre>
 					</div>
+					<aside class="notes">
+						<p>After a successful login, instead of redirecting the user directly to the React app, Rodauth redirects to a Rails action that will generate JWT tokens. The key detail is the format: turbo_stream. That's what makes the next step possible. The redirect goes to auth_jwt_path, passing along where the user ultimately wants to go as a redirect_uri parameter.</p>
+					</aside>
 				</section>
 
 				<section>
@@ -640,10 +741,16 @@ class RodauthController < ApplicationController
 end
 						</code></pre>
 					</div>
+					<aside class="notes">
+						<p>The jwt action generates fresh JWT tokens using the API Rodauth configuration — but scoped to the currently logged-in Rails session user. Then it renders a Turbo Stream response with custom actions: set_local_storage_item writes the access and refresh tokens directly into the browser's localStorage, then a Turbo Stream redirect sends the user on to their destination. The React app receives its tokens silently, without any extra login step. One login form, both apps authenticated, zero user friction.</p>
+					</aside>
 				</section>
 
 				<section>
 					<h2 class="r-fit-text">Deployment</h2>
+					<aside class="notes">
+						<p>Let me show you the deployment setup, because it's cleaner than you'd expect for what is effectively two applications packaged as one.</p>
+					</aside>
 				</section>
 
 				<!-- Deployment: GitHub Actions -->
@@ -688,6 +795,9 @@ end
 - kamal deploy
 						</code></pre>
 					</div>
+					<aside class="notes">
+						<p>Two jobs in CI. First, the React build: yarn install, yarn build, upload the output to S3 tagged with the commit SHA. This can run in parallel with other CI steps. Second, the Kamal deploy: download the React build from S3 — we always fetch the latest successful frontend build — then run kamal deploy. The React app and Rails app travel together as a versioned artifact. No coordination between two separate deployment pipelines. One deploy button deploys everything.</p>
+					</aside>
 				</section>
 
 				<!-- Docker Image Integration -->
@@ -695,39 +805,45 @@ end
 					<h2>Deployment: Docker image integration</h2>
 					<div class="r-stack">
 						<pre class=""><code style="padding: 1em; border-radius: 8px" class="language-dockerfile" data-trim data-line-numbers="">
-	# Dockerfile
+  # Dockerfile
 
-	# …
+  # …
 
-	FROM base
+  FROM base
 
-	USER 1000:1000
+  USER 1000:1000
 
-	COPY --chown=rails:rails --from=build /rails /rails
-	COPY --chown=rails:rails frontend/build/ ./public/react/
+  COPY --chown=rails:rails --from=build /rails /rails
+  COPY --chown=rails:rails frontend/build/ ./public/react/
 
-	CMD ["./bin/thrust", "./bin/rails", "server"]
+  CMD ["./bin/thrust", "./bin/rails", "server"]
 						</code></pre>
 
 						<pre class="fragment"><code style="padding: 1em; border-radius: 8px" class="language-dockerfile" data-trim data-line-numbers="10">
-	# Dockerfile
+  # Dockerfile
 
-	# …
+  # …
 
-	FROM base
+  FROM base
 
-	USER 1000:1000
+  USER 1000:1000
 
-	COPY --chown=rails:rails --from=build /rails /rails
-	COPY --chown=rails:rails frontend/build/ ./public/react/
+  COPY --chown=rails:rails --from=build /rails /rails
+  COPY --chown=rails:rails frontend/build/ ./public/react/
 
-	CMD ["./bin/thrust", "./bin/rails", "server"]
+  CMD ["./bin/thrust", "./bin/rails", "server"]
 						</code></pre>
 					</div>
+					<aside class="notes">
+						<p>And in the Dockerfile, the entire frontend integration is one line: copy the React build output into public/react/. Thruster picks it up automatically as static files and serves it with HTTP/2. The built React application is literally just a directory in the Rails public folder. There's nothing magic about it. This is as simple as deployment gets.</p>
+					</aside>
 				</section>
 
 				<section>
 					<h2 class="r-fit-text">What was harder than we expected?</h2>
+					<aside class="notes">
+						<p>I want to be honest about what was genuinely difficult. This migration wasn't painless and I'd be doing you a disservice if I presented it as a smooth ride. There were real friction points.</p>
+					</aside>
 				</section>
 
 				<section>
@@ -741,6 +857,9 @@ end
 							<li>react-tagsinput (1.4k stars)</li>
 						</ul>
 					</div>
+					<aside class="notes">
+						<p>The JavaScript ecosystem has a React monoculture problem. The best libraries — datepickers, multi-select components, drag-and-drop, tag inputs — are built for React first, React only, React forever. Finding vanilla JS alternatives is genuinely hard. react-dates has 12,000 stars; the main alternative, Easepick, is archived. react-select has 28,000 stars — Choices.js is a distant second with different ergonomics. react-dnd has no real equivalent. This is a concrete constraint that will cost you time when you're building production features.</p>
+					</aside>
 				</section>
 
 				<!-- Turbo-mount -->
@@ -752,21 +871,33 @@ end
 						<li>Last year we built a chat with GetStream (getstream.io/chat).</li>
 						<li>GetStream offers only a React SDK — turbo-mount bridges the gap.</li>
 					</ul>
+					<aside class="notes">
+						<p>The solution for React-only libraries is turbo-mount — a gem by Svyatoslav Kryukov that lets you mount any React, Vue, or Svelte component directly into a Rails view using a simple data attribute. Last year we needed to build a real-time messaging feature. GetStream has a powerful chat SDK — but they only offer a React SDK. No vanilla JS, no web components. turbo-mount let us embed the React chat component inside a Rails view without any architectural gymnastics or additional build pipeline complexity.</p>
+					</aside>
 				</section>
 
 				<section>
 					<h2>Turbo Mount in action</h2>
 					<img src="assets/turbo-mount-1.png" class="r-stretch" />
+					<aside class="notes">
+						<p>Here's how it looks in practice. The chat UI in the center of the screen is a React component mounted via turbo-mount. Everything surrounding it — the navigation, the sidebar, the page layout, the header — is Rails. The user sees a completely seamless experience. There's no visible boundary between the React component and the Rails shell.</p>
+					</aside>
 				</section>
 
 				<section>
 					<h2>Turbo Mount in action</h2>
 					<img src="assets/turbo-mount-2.png" class="r-stretch" />
+					<aside class="notes">
+						<p>And when you click Schedule Message, a modal opens — rendered by a Rails ViewComponent, with Turbo handling the form submission and response. React and Rails side by side in the same viewport, each doing what it does best. The user never experiences a context shift.</p>
+					</aside>
 				</section>
 
 				<!-- What if you need to embed Rails into React? -->
 				<section>
 					<h2 class="r-fit-text">What if you need an opposite integration?</h2>
+					<aside class="notes">
+						<p>turbo-mount handles mounting React components inside Rails views. But we had the opposite problem too: we had new Rails-powered features — fully built in Rails with ViewComponent and Turbo — that needed to be accessible from inside the legacy React itinerary builder. How do you embed a Rails view inside a React component?</p>
+					</aside>
 				</section>
 
 				<!-- With iframes -->
@@ -778,21 +909,33 @@ end
 						<li>The modal is rendered with the standard modal ViewComponent</li>
 						<li>A tiny Stimulus controller handles communication with React</li>
 					</ul>
+					<aside class="notes">
+						<p>Iframes. I know. But hear me out before you close your laptop. The React app renders an iframe as a modal container. The iframe src points to a Rails route. The content inside is a standard Rails modal ViewComponent — the exact same component used everywhere else in the Rails app. A tiny Stimulus controller inside the iframe handles the close event by posting a message to the parent window. The React app listens for that message and closes the modal. It's not glamorous, but it's completely invisible to the user and it works perfectly.</p>
+					</aside>
 				</section>
 
 				<section>
 					<h2>Rails in React</h2>
 					<img src="assets/iframe-1.png" class="r-stretch" />
+					<aside class="notes">
+						<p>Here's the sequence. The user is working in the React itinerary builder — a complex drag-and-drop interface that's been in production for years. They click on Book Button settings.</p>
+					</aside>
 				</section>
 
 				<section>
 					<h2>Rails in React</h2>
 					<img src="assets/iframe-2.png" class="r-stretch" />
+					<aside class="notes">
+						<p>A modal appears. The content inside that modal is a Rails ViewComponent, loaded in an iframe. The tab navigation inside the modal is powered by Turbo Frames — clicking a tab makes a server request and swaps the content without a full reload. The user has no idea they've left React. The visual design is identical because both apps share the same design tokens and component library.</p>
+					</aside>
 				</section>
 
 				<section>
 					<h2 >Rails in React</h2>
 					<img src="assets/iframe-3.png" class="r-stretch" />
+					<aside class="notes">
+						<p>And when the form inside the modal is submitted and succeeds, the Stimulus controller posts a message to the parent React window, which closes the modal and updates its own state. The full interaction — open modal, navigate tabs, fill form, submit, close — spans two completely different rendering technologies and the user experiences it as one seamless flow.</p>
+					</aside>
 				</section>
 
 				<!-- IframeModalController code -->
@@ -816,11 +959,17 @@ class IframeModalController extends Controller {
   }
 }
 					</code></pre>
+					<aside class="notes">
+						<p>This is the entire Stimulus controller that bridges the Rails iframe to the React parent. When a Turbo form submission completes successfully and the submitter element has the close-on-click data attribute set, it posts a 'closeModal' message to the parent window. The React component listens for window messages and closes the modal in response. Twenty lines of JavaScript. This is the entire cross-framework integration layer. Sometimes the right tool is the boring one.</p>
+					</aside>
 				</section>
 
 				<!-- Outcomes -->
 				<section>
 					<h2 class="r-fit-text">Outcomes</h2>
+					<aside class="notes">
+						<p>So after two years of this migration — running React and Rails side by side, building all new features in Hotwire, gradually expanding the Rails surface area — what actually happened? Let me give you the honest picture.</p>
+					</aside>
 				</section>
 
 				<!-- Rails is a one person framework -->
@@ -836,6 +985,9 @@ class IframeModalController extends Controller {
 					<ul>
 						<li>One developer can finish a task from beginning to end.</li>
 					</ul>
+					<aside class="notes">
+						<p>DHH calls Rails a "one person framework" and we now have the receipts. Customer feedback reaches production in hours, not days. Feature flags and A/B tests that used to require coordinating frontend and backend can be done by one developer in an afternoon. Stakeholders can request a UI change in a morning standup and see it live before lunch. The organizational overhead that came from the frontend-backend split simply evaporated. And developer happiness went up — people want to own problems end-to-end, not be a cog in a coordination machine.</p>
+					</aside>
 				</section>
 
 				<section style="text-align: left;">
@@ -845,6 +997,9 @@ class IframeModalController extends Controller {
 						<li>90% of CRUDs are the same and almost nobody likes CSS.</li>
 						<li>We want to make a full-stack developer out of everyone.</li>
 					</ul>
+					<aside class="notes">
+						<p>Two years of this migration forced us to really confront some things. DHH is right — most of what we build is CRUD with a good face on it. The complexity we added with React wasn't serving the business problem; it was serving our architectural ego. And when we're honest about it, almost nobody on the team genuinely enjoys writing CSS. We needed to fix that if we were going to make everyone a true full-stack developer.</p>
+					</aside>
 				</section>
 
 				<!-- AI amplification effect -->
@@ -855,24 +1010,39 @@ class IframeModalController extends Controller {
 						<li>RepoPrompt + superpowers-ruby makes Rails AI-native</li>
 						<li>One developer with AI delivering faster than previous 2-developer teams</li>
 					</ul>
+					<aside class="notes">
+						<p>The AI story completely reversed from what I described earlier. Rails conventions are deeply embedded in every major AI model — trained on decades of idiomatic Rails code. Ask an AI to build a Rails feature and it knows the patterns: MVC, Active Record callbacks, Turbo Streams, ViewComponent. It doesn't need to bridge two mental models. Our developers are now using RepoPrompt with the superpowers-ruby toolset and delivering features at a pace that would have seemed impossible two years ago. One developer with AI is now outpacing what a two-person frontend-backend pair was doing before.</p>
+					</aside>
 				</section>
 
 				<!-- Pull requests per month -->
 				<section>
 					<h2>Pull requests merged per month</h2>
+					<aside class="notes">
+						<p>Here are the actual numbers. Pull requests merged per month, before and after the migration to Rails for new features. The trend speaks for itself. When you remove coordination overhead and give developers an architecture they can reason about end-to-end, output goes up. Not because people are working harder — because they're working without friction.</p>
+					</aside>
 				</section>
 
 				<!-- Showtime -->
 				<section>
 					<h2 class="r-fit-text">Showtime!</h2>
+					<aside class="notes">
+						<p>And now let me show you the actual product — the new modules we built in Rails over the past two years. This is not a mockup. This is production SafariPortal running on Rails with Hotwire today.</p>
+					</aside>
 				</section>
 
 				<section>
 					<h2 class="r-fit-text">Everybody should be a full-stack</h2>
+					<aside class="notes">
+						<p>The biggest organizational shift coming out of this migration: we no longer hire separate frontend and backend developers for SafariPortal. Everyone on the team is expected to ship a complete feature — from database migration to deployed UI. The Hotwire stack makes that realistic in a way that React plus Rails API never did. A Rails developer who was intimidated by the frontend is now shipping complete features independently. That changes what's possible with a small team.</p>
+					</aside>
 				</section>
 
 				<section>
 					<h2 class="r-fit-text">Nobody loves CSS</h2>
+					<aside class="notes">
+						<p>But there's a catch. While the backend development experience with Hotwire is excellent, CSS is still CSS. Specificity wars, inheritance chains, the cascade eating your styles from three files away. Developers who are completely fluent in Ruby struggle with CSS. Tailwind helped enormously — but even with Tailwind, we found ourselves copying the same component markup patterns across dozens of views. We needed something better.</p>
+					</aside>
 				</section>
 
 				<section style="text-align: left;">
@@ -881,11 +1051,17 @@ class IframeModalController extends Controller {
 						<li>CSS is inheritance, specificity, and cascade. And those are problems.</li>
 						<li>What we need is isolation, reusability, and easy modification.</li>
 					</ul>
+					<aside class="notes">
+						<p>The core problem with CSS isn't that it's hard — it's that its fundamental design principles work against you at scale. Inheritance means a style somewhere upstream affects your component. Specificity means you're constantly fighting the cascade. What we actually need from a styling system is isolation, reusability, and predictable modification. Tailwind gets you most of the way there. But you still need to compose it into something.</p>
+					</aside>
 				</section>
 
 				<!-- Front-end world is React-focused -->
 				<section>
 					<h2 class="r-fit-text">Front-end world is React focused</h2>
+					<aside class="notes">
+						<p>And here's the irony — the front-end world being React-focused actually helped us, in a roundabout way. The component model, the design system thinking, the semantic token approach to colors — these are genuinely good ideas that emerged from the React ecosystem. We didn't want to throw them away. We wanted to bring them to Rails.</p>
+					</aside>
 				</section>
 
 				<section style="text-align: left;">
@@ -896,26 +1072,33 @@ class IframeModalController extends Controller {
 						<li class="fragment">Turbo Morphing</li>
 						<li class="fragment">etc…</li>
 					</ul>
+					<aside class="notes">
+						<p>React's component model influenced how the Rails community thinks about UI architecture. Tailwind came out of frustration with traditional CSS that was familiar to React developers. ViewComponent brought component-based thinking — encapsulation, single responsibility, testability — to server-rendered Rails. Turbo Morphing borrowed from React's virtual DOM diffing concept. We got to cherry-pick the best ideas from React without carrying its operational overhead.</p>
+					</aside>
 				</section>
 
 				<section style="text-align: left;">
 					<h2 class="r-fit-text">What did we need?</h2>
+					<aside class="notes">
+						<p>We needed a component library. One that felt as natural as shadcn/ui does in the React world — components you own, not a black-box dependency you upgrade and pray — but built for Rails, ViewComponent, and Turbo. We looked around and nothing quite fit. So we built it.</p>
+					</aside>
 				</section>
 
 				<section style="text-align: left;">
 					<h2 class="r-fit-text">A design system!</h2>
 					<p class="fragment">And there is a tradition to announce UI libraries on Tropical on Rails.</p>
+					<aside class="notes">
+						<p>We built a design system for Rails. And there is indeed a proud tradition at Tropical on Rails of announcing new open-source tools for the community. We're continuing that tradition today. What we're releasing is the component library we've been using in production at SafariPortal for the past year.</p>
+					</aside>
 				</section>
-
-				<!-- Reuse best approaches -->
-				<!-- <section>
-					<h2 class="r-fit-text">And we wanted to reuse<br/>the best working approaches</h2>
-				</section> -->
 
 				<!-- ui.jetrockets.com teaser -->
 				<section>
 					<h2 class="r-fit-text">ui.jetrockets.com</h2>
 					<img src="assets/ui.jetrockets.com.png" style="height: 20vh; border-radius: 8px;" />
+					<aside class="notes">
+						<p>Scan this QR code. ui.jetrockets.com. Everything I'm about to show you is live right now. You can browse the component library, read the documentation, and install it in your Rails app today. It's open source, it's production-tested, and it's free.</p>
+					</aside>
 				</section>
 
 				<!-- ui.jetrockets.com details -->
@@ -932,6 +1115,9 @@ class IframeModalController extends Controller {
 							</ul>
 						</li>
 					</ul>
+					<aside class="notes">
+						<p>ui.jetrockets.com is a Rails 8 component library built on ViewComponent, TailwindCSS 4, and Stimulus. Over 30 production-tested components that we've been shipping in SafariPortal and other JetRockets products. It's AI-native by design — every component has a structured YAML description that Claude can use to understand component APIs and compose them correctly. There's a Claude agent built into the documentation site that can generate view code for you on demand.</p>
+					</aside>
 				</section>
 
 				<!-- Inspired by shadcn -->
@@ -956,23 +1142,38 @@ class IframeModalController extends Controller {
   <%= ui.alert_description "Your changes have been saved." %>
 <% end %>
 					</code></pre>
+					<aside class="notes">
+						<p>The API is directly inspired by shadcn/ui. If you've used shadcn in a React project, the mental model transfers immediately. The JSX component nesting maps directly to ERB helper blocks. AlertTitle becomes alert_title. AlertDescription becomes alert_description. We intentionally mirrored the shadcn API because React developers joining a Rails project should feel at home, and because shadcn's API design is genuinely good.</p>
+					</aside>
 				</section>
 
 				<section>
 					<h2 class="r-fit-text">30+ reusable components</h2>
+					<aside class="notes">
+						<p>Over 30 components covering the full UI spectrum — alerts, badges, buttons, cards, dialogs, dropdowns, form fields, data tables, navigation menus, tooltips, toasts. Everything you need to build a production Rails app without ever touching raw Tailwind class soup. Each component is a ViewComponent you own and can customize.</p>
+					</aside>
 				</section>
 
 				<section>
 					<h2 class="r-fit-text">Semantic Color System</h2>
+					<aside class="notes">
+						<p>The library uses a semantic color system, borrowed directly from the React component library world. You're not setting blue-500 in a hundred places — you're setting "primary", "destructive", "muted", "accent". Swap your theme colors in one place and the entire application updates consistently. This is something shadcn and Radix figured out years ago and it's now available for Rails.</p>
+					</aside>
 				</section>
 
 				<section>
 					<h2 class="r-fit-text">Kit</h2>
+					<aside class="notes">
+						<p>The library includes a Kit — a CLI tool inspired by shadcn's component installer. Instead of installing a gem that owns your UI, you copy components into your project and own them. Need to customize the button? Edit the button component. Need a variant that doesn't exist? Add it. The code is yours. No black-box gem updates breaking your production UI.</p>
+					</aside>
 				</section>
 
 				<!-- The gem -->
 				<section>
 					<h2 class="r-fit-text">The gem</h2>
+					<aside class="notes">
+						<p>There is a gem for the parts that don't need to be customized — the helper DSL, the base classes, the Stimulus controllers. One gem install, one npm package, and you're ready to start building. The documentation site walks you through the setup in about five minutes.</p>
+					</aside>
 				</section>
 
 				<section>
@@ -980,6 +1181,9 @@ class IframeModalController extends Controller {
 						<source src="assets/JetRockets UI Components.mp4" type="video/mp4" />
 						Your browser does not support the video tag.
 					</video>
+					<aside class="notes">
+						<p>Let me show you a quick demo of the library in action — the component browser, the AI agent generating code, and what it looks like inside a real Rails application.</p>
+					</aside>
 				</section>
 
 				<section style="text-align: left;">
@@ -990,6 +1194,9 @@ class IframeModalController extends Controller {
 						<li>linkedin.com/in/igor-aleksandrov</li>
 						<li>x.com/igor_alexandrov</li>
 					</ul>
+					<aside class="notes">
+						<p>That's the talk. Six years with React, two years migrating to Rails, and now we're building the tools to make that Rails experience even better for everyone. The lesson isn't "don't use React" — it's "choose the right tool for the moment, and have the courage to reassess when the moment changes." I'm happy to take any questions — about the architecture, the migration strategy, the authentication solution, the component library, or the AI workflows. Find me at any of these handles, or come grab me in the hall. Thank you.</p>
+					</aside>
 				</section>
 
 			</div>
