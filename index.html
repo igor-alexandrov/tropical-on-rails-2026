@@ -1045,8 +1045,22 @@ class IframeModalController extends Controller {
 				<!-- Showtime -->
 				<section>
 					<h2 class="r-fit-text">Showtime!</h2>
+				</section>
+
+				<section>
+					<h2 class="r-fit-text">Gratitude</h2>
+					<div style="display: flex; justify-content: center; gap: 4em; margin-top: 1em;">
+						<div style="display: flex; flex-direction: column; align-items: center; gap: 0.75em;">
+							<img src="assets/solilin.jpg" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover;" />
+							<p style="margin: 0;">Aleksei Solilin</p>
+						</div>
+						<div style="display: flex; flex-direction: column; align-items: center; gap: 0.75em;">
+							<img src="assets/pena-azar.jpeg" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover;" />
+							<p style="margin: 0;">Rafael Pena-Azar</p>
+						</div>
+					</div>
 					<aside class="notes">
-						<p>And now let me show you the actual product — the new modules we built in Rails over the past two years. This is not a mockup. This is production SafariPortal running on Rails with Hotwire today.</p>
+						<p>Before I wrap up, I want to take a moment to thank two people who made this work possible. Aleksei Solilin, my co-founder at JetRockets — it was his question that unlocked the entire migration strategy. And Rafael Pena-Azar, who joined us not long ago, but did a lot for the next 10 slides to exist.</p>
 					</aside>
 				</section>
 
@@ -1057,31 +1071,33 @@ class IframeModalController extends Controller {
 					</aside>
 				</section>
 
-				<section>
-					<h2 class="r-fit-text">Nobody loves CSS</h2>
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">What are we missing in CSS?</h2>
+					<ul>
+						<li class="fragment">CSS is inheritance, specificity, and cascade. And those are problems.</li>
+						<li class="fragment">What we need is isolation, reusability, and easy modification.</li>
+					</ul>
+					<p class="fragment">There are different methodologies to solve this.</li>
 					<aside class="notes">
-						<p>But there's a catch. While the backend development experience with Hotwire is excellent, CSS is still CSS. Specificity wars, inheritance chains, the cascade eating your styles from three files away. Developers who are completely fluent in Ruby struggle with CSS. Tailwind helped enormously — but even with Tailwind, we found ourselves copying the same component markup patterns across dozens of views. We needed something better.</p>
+						<p>The core problem with CSS isn't that it's hard — it's that its fundamental design principles work against you at scale. Inheritance means a style somewhere upstream affects your component. Specificity means you're constantly fighting the cascade. What we actually need from a styling system is isolation, reusability, and predictable modification. There are methodologies for this — BEM, CSS Modules, utility-first — but they all require discipline and tooling. Tailwind gets you most of the way there. But you still need to compose it into reusable building blocks.</p>
 					</aside>
 				</section>
 
 				<section style="text-align: left;">
-					<h2 class="r-fit-text">What are we missing in CSS?</h2>
-					<ul>
-						<li>CSS is inheritance, specificity, and cascade. And those are problems.</li>
-						<li>What we need is isolation, reusability, and easy modification.</li>
-					</ul>
+					<h2 class="r-fit-text">Nobody loves CSS</h2>
+					<p class="fragment">Speaking from back-end developers position</p>
 					<aside class="notes">
-						<p>The core problem with CSS isn't that it's hard — it's that its fundamental design principles work against you at scale. Inheritance means a style somewhere upstream affects your component. Specificity means you're constantly fighting the cascade. What we actually need from a styling system is isolation, reusability, and predictable modification. Tailwind gets you most of the way there. But you still need to compose it into something.</p>
+						<p>I want to be specific here: I'm speaking from the backend developer's perspective. Our Rails developers are fluent in Ruby, confident with SQL, comfortable reasoning about architecture — but CSS is a different kind of thinking, and most of them don't enjoy it. When we moved to Hotwire and everyone became full-stack, CSS became the bottleneck. Tailwind helped, but it wasn't enough on its own. We needed something that made building UI feel as natural as writing Ruby.</p>
 					</aside>
 				</section>
 
 				<!-- Front-end world is React-focused -->
-				<section>
+				<!-- <section>
 					<h2 class="r-fit-text">The front-end world is React-focused</h2>
 					<aside class="notes">
 						<p>And here's the irony — the front-end world being React-focused actually helped us, in a roundabout way. The component model, the design system thinking, the semantic token approach to colors — these are genuinely good ideas that emerged from the React ecosystem. We didn't want to throw them away. We wanted to bring them to Rails.</p>
 					</aside>
-				</section>
+				</section> -->
 
 				<section style="text-align: left;">
 					<h2 class="r-fit-text">React has significantly influenced the Rails ecosystem</h2>
@@ -1104,10 +1120,10 @@ class IframeModalController extends Controller {
 				</section>
 
 				<section style="text-align: left;">
-					<h2 class="r-fit-text">A design system!</h2>
+					<h2 class="r-fit-text">A UI system!</h2>
 					<p class="fragment">There is a tradition of announcing UI libraries at Tropical on Rails.</p>
 					<aside class="notes">
-						<p>We built a design system for Rails. And there is indeed a proud tradition at Tropical on Rails of announcing new open-source tools for the community. We're continuing that tradition today. What we're releasing is the component library we've been using in production at SafariPortal for the past year.</p>
+						<p>We built a UI system for Rails. Not just a component library — a full system: semantic colors, a component API, a CLI installer, and AI-native tooling baked in from the start. And there is indeed a proud tradition at Tropical on Rails of shipping new open-source tools for the community. We're continuing that tradition today with something we've been running in production at SafariPortal for the past year.</p>
 					</aside>
 				</section>
 
@@ -1142,25 +1158,35 @@ class IframeModalController extends Controller {
 				<!-- Inspired by shadcn -->
 				<section style="text-align: left;">
 					<h2 class="r-fit-text">Inspired by the shadcn/ui library</h2>
-						<pre><code style="padding: 1em; border-radius: 8px" class="language-jsx" data-trim data-line-numbers>
-<Alert>
-  <InfoIcon />
-  <AlertTitle>Heads up!</AlertTitle>
-  <AlertDescription>
-    You can add components and dependencies to your app using the cli.
-  </AlertDescription>
-  <AlertAction>
-    <Button variant="outline">Enable</Button>
-  </AlertAction>
-</Alert>
-					</code></pre>
-					<pre><code style="padding: 1em; border-radius: 8px" class="language-erb" data-trim data-line-numbers>
-<%= ui.alert  do %>
-  <%= ui.alert_icon "check-circle" %>
-  <%= ui.alert_title "Success!" %>
-  <%= ui.alert_description "Your changes have been saved." %>
+						<div class="r-stack">
+							<pre class="fragment fade-out"><code style="padding: 1em; border-radius: 8px" class="language-jsx" data-trim data-line-numbers>
+import { AlertCircleIcon } from &quot;lucide-react&quot;
+import { Alert, AlertDescription, AlertTitle } from &quot;@/components/ui/alert&quot;
+
+export function AlertDestructive() {
+  return (
+    &lt;Alert variant=&quot;destructive&quot; className=&quot;max-w-md&quot;&gt;
+      &lt;AlertCircleIcon /&gt;
+      &lt;AlertTitle&gt;Payment failed&lt;/AlertTitle&gt;
+      &lt;AlertDescription&gt;
+        Your payment could not be processed.
+				Please check your payment method and try again.
+      &lt;/AlertDescription&gt;
+    &lt;/Alert&gt;
+  )
+}
+						</code></pre>
+						<pre class="fragment"><code style="padding: 1em; border-radius: 8px" class="language-erb" data-trim data-line-numbers>
+<%= ui.alert variant: :warning do %>
+  <%= ui.alert_icon "alert-circle" %>
+  <%= ui.alert_title "Payment failed" %>
+  <%= ui.alert_description do %>
+		Your payment could not be processed.
+		Please check your payment method and try again."
+	<% end %>
 <% end %>
-					</code></pre>
+						</code></pre>
+					</div>
 					<aside class="notes">
 						<p>The API is directly inspired by shadcn/ui. If you've used shadcn in a React project, the mental model transfers immediately. The JSX component nesting maps directly to ERB helper blocks. AlertTitle becomes alert_title. AlertDescription becomes alert_description. We intentionally mirrored the shadcn API because React developers joining a Rails project should feel at home, and because shadcn's API design is genuinely good.</p>
 					</aside>
@@ -1170,6 +1196,19 @@ class IframeModalController extends Controller {
 					<h2 class="r-fit-text">30+ reusable components</h2>
 					<aside class="notes">
 						<p>Over 30 components covering the full UI spectrum — alerts, badges, buttons, cards, dialogs, dropdowns, form fields, data tables, navigation menus, tooltips, toasts. Everything you need to build a production Rails app without ever touching raw Tailwind class soup. Each component is a ViewComponent you own and can customize.</p>
+					</aside>
+				</section>
+
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">UI KIT</h2>
+					<ul>
+						<li>Built with Claude within a day</li>
+						<li>11 components</li>
+						<li>61+ built-in blocks</li>
+						<li>Free</li>
+					</ul>
+					<aside class="notes">
+						<p>This is the part I'm most excited to show. The UI Kit was built almost entirely with Claude in a single day. 11 core components, over 61 pre-built blocks you can drop directly into your views. It's free and open source. The fact that we could go from zero to a production-quality component kit in a day is itself a demonstration of the AI-native Rails workflow we've been describing — conventions that AI understands deeply, a codebase it can reason about end-to-end, and a feedback loop that's fast enough to ship real things in real time.</p>
 					</aside>
 				</section>
 
