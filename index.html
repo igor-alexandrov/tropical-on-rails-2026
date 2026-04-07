@@ -131,7 +131,7 @@
 
 				<!-- Rails frontend landscape in 2020 -->
 				<section style="text-align: left;">
-					<h2>What Rails offered for frontend in 2020?</h2>
+					<h2>What did Rails offer for the frontend in 2020?</h2>
 					<ul>
 						<li class="fragment">Rails 6.0 – released April 2019</li>
 						<li class="fragment">Webpacker – default for JavaScript bundling</li>
@@ -308,11 +308,11 @@
 
 				<!-- Where things started to hurt -->
 				<section style="text-align: left;">
-					<h2 class="r-fit-text">Where things started to hurt?</h2>
+					<h2 class="r-fit-text">Where did things start to hurt?</h2>
 					<ul>
 						<li class="fragment">Redux boilerplate for simple itinerary updates.</li>
 						<li class="fragment">Build times getting longer as features grew.</li>
-						<li class="fragment">Coordination between frontend and backend decreeses the development speed and efficiency.</li>
+						<li class="fragment">Coordination between frontend and backend decreases development speed and efficiency.</li>
 					</ul>
 
 					<aside class="notes">
@@ -333,7 +333,7 @@
 				</section>
 
 				<section style="text-align: left;">
-					<h2 class="r-fit-text">What it was for the team?</h2>
+					<h2 class="r-fit-text">What was it like for the team?</h2>
 					<ul>
 						<li class="fragment">Context switching between React logic and Rails backend.</li>
 						<li class="fragment">State management debugging for complex workflows.</li>
@@ -368,7 +368,7 @@
 				</section>
 
 				<section style="text-align: left;">
-					<h2 class="r-fit-text">Things got even worth…</h2>
+					<h2 class="r-fit-text">Things got even worse…</h2>
 					<ul>
 						<li>We all became full-stack developers (not really).</li>
 						<li>
@@ -442,7 +442,7 @@
 
 				<!-- HotWire experience -->
 				<section style="text-align: left;">
-					<h2 class="r-fit-text">Within 2023–2024 we got a huge Hotwire experience</h2>
+					<h2 class="r-fit-text">During 2023–2024 we gained extensive Hotwire experience</h2>
 					<ul>
 						<li>Orbit</li>
 						<li>OneTribe</li>
@@ -488,7 +488,7 @@
 				<!-- Decision quote -->
 				<section>
 					<blockquote>
-						&ldquo;What if we will start building new features in Rails and keep the existing React app running?&rdquo;
+						&ldquo;What if we started building new features in Rails and kept the existing React app running?&rdquo;
 					</blockquote>
 					<p>Alexey Solilin, co-founder of JetRockets</p>
 					<aside class="notes">
@@ -603,7 +603,8 @@ end
 
 				<section>
 					<h2>React rendering (controller)</h2>
-					<pre><code style="padding: 1em; border-radius: 8px" class="language-ruby" data-trim data-line-numbers>
+					<div class="r-stack">
+						<pre><code style="padding: 1em; border-radius: 8px" class="language-ruby" data-trim data-line-numbers>
 class ReactController < ApplicationController
   include ActionView::Helpers::AssetUrlHelper
   include ViteRails::TagHelpers
@@ -619,6 +620,24 @@ class ReactController < ApplicationController
   end
 end
 					</code></pre>
+
+					<pre class="fragment"><code class style="padding: 1em; border-radius: 8px" class="language-ruby" data-trim data-line-numbers="8-12">
+class ReactController < ApplicationController
+  include ActionView::Helpers::AssetUrlHelper
+  include ViteRails::TagHelpers
+
+  layout "react"
+
+  def index
+    if Rails.env.development?
+      redirect_to request.original_url.sub(/:\d+/, ":8080")
+    else
+      render file: Rails.public_path.join("react/index.html")
+    end
+  end
+end
+						</code></pre>
+					</div>
 					<aside class="notes">
 						<p>The controller is almost embarrassingly simple. In development, redirect to the Vite dev server running on port 8080 — so React developers keep their hot reloading. In production, render the pre-built index.html directly from the public directory. That's the entire bridge between Rails routing and the React SPA. No proxy, no middleware, no special configuration. Just a file serve.</p>
 					</aside>
@@ -847,9 +866,9 @@ end
 				</section>
 
 				<section>
-					<h2 class="r-fit-text">The JS world is overcentralized on React</h2>
+					<h2 class="r-fit-text">The JS world is overcentralized around React</h2>
 					<div style="text-align: left;">
-						<p>Sometimes it is hard (almost impossible) to find vanilla JS alternatives.</p>
+						<p>Finding vanilla JS alternatives is sometimes hard — almost impossible.</p>
 						<ul>
 							<li>react-dates (12k stars) – Easepick is archived</li>
 							<li>react-select (28k stars) – closest: Choices.js</li>
@@ -865,7 +884,6 @@ end
 				<!-- Turbo-mount -->
 				<section>
 					<h2 class="r-fit-text">Turbo Mount</h2>
-					<p>Sometimes you just need to mount a React component into a Rails app. Last year we built a chat with GetStream (getstream.io/chat).</p>
 					<p><a href="https://github.com/skryukov/turbo-mount">github.com/skryukov/turbo-mount</a></p>
 					<ul>
 						<li>Last year we built a chat with GetStream (getstream.io/chat).</li>
@@ -1017,9 +1035,10 @@ class IframeModalController extends Controller {
 
 				<!-- Pull requests per month -->
 				<section>
-					<h2>Pull requests merged per month</h2>
+					<h2>Pull requests merged per quarter</h2>
+					<img src="assets/pull_requests.png" class="r-stretch" />
 					<aside class="notes">
-						<p>Here are the actual numbers. Pull requests merged per month, before and after the migration to Rails for new features. The trend speaks for itself. When you remove coordination overhead and give developers an architecture they can reason about end-to-end, output goes up. Not because people are working harder — because they're working without friction.</p>
+						<p>These are the real numbers from SafariPortal. 242 pull requests per quarter before the migration. 406 after. That's a 68% increase — with the same team, same codebase, same product. No heroics, no crunch. Just friction removed. When developers stop context-switching between two mental models and start owning features end-to-end, this is what happens to output.</p>
 					</aside>
 				</section>
 
@@ -1032,7 +1051,7 @@ class IframeModalController extends Controller {
 				</section>
 
 				<section>
-					<h2 class="r-fit-text">Everybody should be a full-stack</h2>
+					<h2 class="r-fit-text">Everybody should be full-stack</h2>
 					<aside class="notes">
 						<p>The biggest organizational shift coming out of this migration: we no longer hire separate frontend and backend developers for SafariPortal. Everyone on the team is expected to ship a complete feature — from database migration to deployed UI. The Hotwire stack makes that realistic in a way that React plus Rails API never did. A Rails developer who was intimidated by the frontend is now shipping complete features independently. That changes what's possible with a small team.</p>
 					</aside>
@@ -1058,14 +1077,14 @@ class IframeModalController extends Controller {
 
 				<!-- Front-end world is React-focused -->
 				<section>
-					<h2 class="r-fit-text">Front-end world is React focused</h2>
+					<h2 class="r-fit-text">The front-end world is React-focused</h2>
 					<aside class="notes">
 						<p>And here's the irony — the front-end world being React-focused actually helped us, in a roundabout way. The component model, the design system thinking, the semantic token approach to colors — these are genuinely good ideas that emerged from the React ecosystem. We didn't want to throw them away. We wanted to bring them to Rails.</p>
 					</aside>
 				</section>
 
 				<section style="text-align: left;">
-					<h2 class="r-fit-text">React affected the Rails ecosystem a lot</h2>
+					<h2 class="r-fit-text">React has significantly influenced the Rails ecosystem</h2>
 					<ul>
 						<li class="fragment">Tailwind</li>
 						<li class="fragment">ViewComponent</li>
@@ -1086,7 +1105,7 @@ class IframeModalController extends Controller {
 
 				<section style="text-align: left;">
 					<h2 class="r-fit-text">A design system!</h2>
-					<p class="fragment">And there is a tradition to announce UI libraries on Tropical on Rails.</p>
+					<p class="fragment">There is a tradition of announcing UI libraries at Tropical on Rails.</p>
 					<aside class="notes">
 						<p>We built a design system for Rails. And there is indeed a proud tradition at Tropical on Rails of announcing new open-source tools for the community. We're continuing that tradition today. What we're releasing is the component library we've been using in production at SafariPortal for the past year.</p>
 					</aside>
