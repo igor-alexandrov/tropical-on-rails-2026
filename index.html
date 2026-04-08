@@ -994,7 +994,7 @@ class IframeModalController extends Controller {
 				</section>
 
 				<!-- Rails is a one person framework -->
-				<section>
+				<!-- <section>
 					<h2 class="r-fit-text">Rails is a one person framework</h2>
 					<p>Feature iteration speed</p>
 					<ul>
@@ -1009,14 +1009,15 @@ class IframeModalController extends Controller {
 					<aside class="notes">
 						<p>DHH calls Rails a "one person framework" and we now have the receipts. Customer feedback reaches production in hours, not days. Feature flags and A/B tests that used to require coordinating frontend and backend can be done by one developer in an afternoon. Stakeholders can request a UI change in a morning standup and see it live before lunch. The organizational overhead that came from the frontend-backend split simply evaporated. And developer happiness went up — people want to own problems end-to-end, not be a cog in a coordination machine.</p>
 					</aside>
-				</section>
+				</section> -->
 
 				<section style="text-align: left;">
 					<h2 class="r-fit-text">What we got out of these two years?</h2>
 					<ul>
-						<li>"We are coding monkeys!" – DHH.</li>
-						<li>90% of CRUDs are the same and almost nobody likes CSS.</li>
-						<li>We want to make a full-stack developer out of everyone.</li>
+						<li class="fragment">"Rails is a one person framework" - DHH.</li>
+						<li class="fragment">"We are coding monkeys!" – DHH.</li>
+						<li class="fragment">90% of CRUDs are the same and almost nobody likes CSS.</li>
+						<li class="fragment">We can to make a full-stack developer out of everyone.</li>
 					</ul>
 					<aside class="notes">
 						<p>Two years of this migration forced us to really confront some things. DHH is right — most of what we build is CRUD with a good face on it. The complexity we added with React wasn't serving the business problem; it was serving our architectural ego. And when we're honest about it, almost nobody on the team genuinely enjoys writing CSS. We needed to fix that if we were going to make everyone a true full-stack developer.</p>
@@ -1024,8 +1025,8 @@ class IframeModalController extends Controller {
 				</section>
 
 				<!-- AI amplification effect -->
-				<section>
-					<h2>AI amplification effect</h2>
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">AI amplification effect</h2>
 					<ul>
 						<li>Rails conventions + AI = extreme productivity</li>
 						<li>RepoPrompt + superpowers-ruby makes Rails AI-native</li>
@@ -1068,10 +1069,19 @@ class IframeModalController extends Controller {
 				</section>
 
 				<section>
-					<h2 class="r-fit-text">Everybody should be full-stack</h2>
+					<!-- <h2 class="r-fit-text">Everybody should be full-stack</h2> -->
+					<blockquote>
+						&ldquo;– Everybody can be full-stack engineer.&rdquo;
+					</blockquote>
 					<aside class="notes">
 						<p>The biggest organizational shift coming out of this migration: we no longer hire separate frontend and backend developers for SafariPortal. Everyone on the team is expected to ship a complete feature — from database migration to deployed UI. The Hotwire stack makes that realistic in a way that React plus Rails API never did. A Rails developer who was intimidated by the frontend is now shipping complete features independently. That changes what's possible with a small team.</p>
 					</aside>
+				</section>
+
+				<section>
+					<blockquote>
+						&ldquo;– But nobody loves CSS.&rdquo;
+					</blockquote>
 				</section>
 
 				<section style="text-align: left;">
@@ -1102,7 +1112,7 @@ class IframeModalController extends Controller {
 					</aside>
 				</section> -->
 
-				<section style="text-align: left;">
+				<!-- <section style="text-align: left;">
 					<h2 class="r-fit-text">React has influenced the Rails ecosystem</h2>
 					<ul>
 						<li class="fragment">Tailwind</li>
@@ -1113,7 +1123,7 @@ class IframeModalController extends Controller {
 					<aside class="notes">
 						<p>React's component model influenced how the Rails community thinks about UI architecture. Tailwind came out of frustration with traditional CSS that was familiar to React developers. ViewComponent brought component-based thinking — encapsulation, single responsibility, testability — to server-rendered Rails. Turbo Morphing borrowed from React's virtual DOM diffing concept. We got to cherry-pick the best ideas from React without carrying its operational overhead.</p>
 					</aside>
-				</section>
+				</section> -->
 
 				<section style="text-align: left;">
 					<h2 class="r-fit-text">What did we need?</h2>
@@ -1213,7 +1223,7 @@ export function AlertDestructive() {
 					<p>
 						<a href="https://ui.jetrockets.com/ui/kit">https://ui.jetrockets.com/ui/kit</a>
 					</p>
-					<p class="fragment">
+					<p>
 						<ul>
 							<li>Built with components by Claude within a day</li>
 							<li>11 reusable page components</li>
