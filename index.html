@@ -961,13 +961,8 @@ end
 					<h2>Stimulus controller</h2>
 					<pre><code style="padding: 1em; border-radius: 8px" class="language-ruby" data-trim data-line-numbers>
 class IframeModalController extends Controller {
-	connect () {
-		# ...
-	}
 
-	disconnect () {
-		# ...
-	}
+	# ...
 
   closeEvent(event) {
     window.parent.postMessage('closeModal', '*');
@@ -983,10 +978,6 @@ class IframeModalController extends Controller {
 
     this.closeEvent();
   }
-
-	closeAfterClickEvent (event) {
-		# ...
-	}
 }
 					</code></pre>
 					<aside class="notes">
