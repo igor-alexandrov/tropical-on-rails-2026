@@ -307,7 +307,7 @@
 				</section>
 
 				<!-- Where things started to hurt -->
-				<section style="text-align: left;">
+				<!-- <section style="text-align: left;">
 					<h2 class="r-fit-text">Where did things start to hurt?</h2>
 					<ul>
 						<li class="fragment">Redux boilerplate for simple itinerary updates.</li>
@@ -323,14 +323,14 @@
 							The tax wasn't just measured in lines of code or story points — it was measured in mental energy. Every developer had to hold two separate mental models simultaneously: the Rails domain on the backend and the React/Redux state model on the frontend. A backend developer touching the frontend needed to re-learn component conventions, prop drilling patterns, and whatever state shape Redux had evolved into since they last looked. A frontend developer filing a bug had to trace execution across the API boundary before they could even begin to understand the problem. The cognitive overhead was invisible in sprint planning and never showed up in velocity metrics — but it was there, compounding quietly.
 						</p>
 					</aside>
-				</section>
+				</section> -->
 
 				<!-- Code: savePage -->
-				<section data-background-image="assets/code-1.png">
+				<!-- <section data-background-image="assets/code-1.png">
 					<aside class="notes">
 						<p>Look at this. This is actual production code from SafariPortal — a single function to save a page in the itinerary builder. It handles optimistic UI updates, session storage flags to suppress self-broadcast events, lock version conflict detection, and rollback logic on failure. It's not bad code. It's the right code for what it needed to do. But consider the surface area you need to understand to reason about it: the Redux store shape, the API contract, the session storage convention, the error handling. All of this for a save operation. Now multiply that across 53 routes.</p>
 					</aside>
-				</section>
+				</section> -->
 
 				<section style="text-align: left;">
 					<h2 class="r-fit-text">What was it like for the team?</h2>
@@ -386,12 +386,12 @@
 					</aside>
 				</section>
 
-				<section style="text-align: left;">
+				<!-- <section style="text-align: left;">
 					<h2 class="r-fit-text">From itinerary builder → full-cycle travel CRM</h2>
 					<aside class="notes">
 						<p>The business ambition was growing while the team size wasn't. We weren't just maintaining an itinerary builder anymore — we were being asked to transform the entire product into a full travel CRM. That's when the architectural debt became an existential constraint.</p>
 					</aside>
-				</section>
+				</section> -->
 
 				<!-- Transform to CRM -->
 				<section style="text-align: left;">
