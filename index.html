@@ -1215,7 +1215,6 @@ export function AlertDestructive() {
 						</ul>
 					</p>
 					<aside class="notes">
-						<p>This is the part I'm most excited to show. The UI Kit was built almost entirely with Claude in a single day. 11 core components, over 61 pre-built blocks you can drop directly into your views. It's free and open source. The fact that we could go from zero to a production-quality component kit in a day is itself a demonstration of the AI-native Rails workflow we've been describing — conventions that AI understands deeply, a codebase it can reason about end-to-end, and a feedback loop that's fast enough to ship real things in real time.</p>
 					</aside>
 				</section>
 
@@ -1229,6 +1228,8 @@ export function AlertDestructive() {
 						<li>With file watching & auto-refresh</li>
 						<li>With a comprehensive documentation including a description, full properties table, and usage examples</li>
 					</ul>
+					<aside class="notes">
+					</aside>
 				</section>
 
 				<section style="text-align: left;">
@@ -1236,12 +1237,26 @@ export function AlertDestructive() {
 					<p>
 						<a href="https://ui.jetrockets.com/builder">https://ui.jetrockets.com/builder</a>
 					</p>
+					<aside class="notes">
+					</aside>
 				</section>
 
-				<section>
-					<h2 class="r-fit-text">The gem</h2>
+				<section style="text-align: left;">
+					<h2 class="r-fit-text">The gem (early prototype stage)</h2>
+					<p>
+						<a href="https://github.com/jetrockets/jet_ui">https://github.com/jetrockets/jet_ui</a>
+					</p>
+					<ul>
+						<li>
+							For now two commands are supported
+							<ul>
+								<li><code>rails generate jet_ui:install</code></li>
+								<li><code>rails generate jet_ui:eject &lt;component name&gt;</code></li>
+							</ul>
+						</li>
+
 					<aside class="notes">
-						<p>There is a gem for the parts that don't need to be customized — the helper DSL, the base classes, the Stimulus controllers. One gem install, one npm package, and you're ready to start building. The documentation site walks you through the setup in about five minutes.</p>
+
 					</aside>
 				</section>
 
@@ -1258,10 +1273,10 @@ export function AlertDestructive() {
 				<section style="text-align: left;">
 					<h2 class="r-fit-text">Thank you! AMA.</h2>
 					<ul>
-						<li>ui.jetrockets.com</li>
-						<li>github.com/igor-alexandrov</li>
-						<li>linkedin.com/in/igor-aleksandrov</li>
-						<li>x.com/igor_alexandrov</li>
+						<li><a href="https://ui.jetrockets.com">https://ui.jetrockets.com</a></li>
+						<li><a href="https://github.com/igor-alexandrov">https://github.com/igor-alexandrov</a></li>
+						<li><a href="https://linkedin.com/in/igor-aleksandrov">https://linkedin.com/in/igor-aleksandrov</a></li>
+						<li><a href="https://x.com/igor_alexandrov">https://x.com/igor_alexandrov</a></li>
 					</ul>
 					<aside class="notes">
 						<p>That's the talk. Six years with React, two years migrating to Rails, and now we're building the tools to make that Rails experience even better for everyone. The lesson isn't "don't use React" — it's "choose the right tool for the moment, and have the courage to reassess when the moment changes." I'm happy to take any questions — about the architecture, the migration strategy, the authentication solution, the component library, or the AI workflows. Find me at any of these handles, or come grab me in the hall. Thank you.</p>
