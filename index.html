@@ -1200,6 +1200,9 @@ export function AlertDestructive() {
 
 				<section>
 					<h2 class="r-fit-text">And even more…</h2>
+					<aside class="notes">
+						<p>The 30+ components are just the foundation. On top of them we've built additional tooling that makes the whole system more powerful in practice. Let me walk you through the pieces.</p>
+					</aside>
 				</section>
 
 				<section style="text-align: left;">
@@ -1215,6 +1218,7 @@ export function AlertDestructive() {
 						</ul>
 					</p>
 					<aside class="notes">
+						<p>The UI Kit lives at ui.jetrockets.com/ui/kit. It was built entirely using the component library — Claude composed the pages from existing components in a single day. 11 ready-made page layouts, over 60 block variations to choose from. The idea is that you pick a layout, eject it into your project, and own it from that point forward. No framework lock-in, no runtime dependency on our gem for the page structure — just your own code built on solid components.</p>
 					</aside>
 				</section>
 
@@ -1229,6 +1233,7 @@ export function AlertDestructive() {
 						<li>With a comprehensive documentation including a description, full properties table, and usage examples</li>
 					</ul>
 					<aside class="notes">
+						<p>We also ship a VS Code extension. It gives you component name autocomplete as you type ERB, so you never have to leave your editor to look up an API. It watches your files and auto-refreshes the component preview. And it surfaces full documentation inline — descriptions, property tables, usage examples — so your developers have everything they need without switching context to a browser.</p>
 					</aside>
 				</section>
 
@@ -1238,6 +1243,7 @@ export function AlertDestructive() {
 						<a href="https://ui.jetrockets.com/builder">https://ui.jetrockets.com/builder</a>
 					</p>
 					<aside class="notes">
+						<p>The theme builder lets you configure the entire semantic color system visually — primary, destructive, muted, accent, background, border — and instantly preview how those choices look across all components. When you're happy, you export a single CSS file and drop it into your project. No configuration files, no build steps. One file controls the look of your entire application.</p>
 					</aside>
 				</section>
 
@@ -1256,7 +1262,7 @@ export function AlertDestructive() {
 						</li>
 
 					<aside class="notes">
-
+						<p>And for those who prefer a gem, jet_ui is on GitHub in early prototype stage. Right now it supports two commands: jet_ui:install to set up the library in your project, and jet_ui:eject to copy any component directly into your codebase so you own it completely. Think of it as the shadcn CLI for Rails — you're not locked into our gem's release cycle, you own the code from the moment you eject it.</p>
 					</aside>
 				</section>
 
