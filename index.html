@@ -652,7 +652,13 @@ end
 
 				<section style="text-align: left;">
 					<h2 class="r-fit-text">Rodauth did all the job</h2>
-					<p class="fragment">Rodauth did <strong>almost</strong> all the job.</p>
+
+					<p class="fragment">Almost…</p>
+
+					<p class="fragment">
+						<a href="https://github.com/jeremyevans/rodauth">https://github.com/jeremyevans/rodauth</a>
+					</p>
+
 					<ul>
 						<li class="fragment">Rodauth is a middleware that sits before the Rails app.</li>
 						<li class="fragment">Sign-in, recover password, OTP pages where rewritten to Rails.</li>
@@ -660,16 +666,13 @@ end
 						<li class="fragment">Rails app: new Rodauth configuration with traditional cookie-based session management.</li>
 					</ul>
 
-					<p class="fragment">
-						<a href="https://github.com/jeremyevans/rodauth">https://github.com/jeremyevans/rodauth</a>
-					</p>
 					<aside class="notes">
 						<p>We'd already been using Rodauth in Rails for the API. Rodauth is modular and pluggable enough to run two completely separate configurations in the same application — one for the API with JWT tokens, one for the Rails app with cookie sessions. The login page, password recovery, and OTP flows were rewritten as Rails views. Now both apps authenticate through one login form, one Rails endpoint. The problem was: after login, how do you get JWT tokens into the React app's localStorage without making the user do anything extra?</p>
 					</aside>
 				</section>
 
 				<section>
-					<h2>React session sharing</h2>
+					<h2 class="r-fit-text">React session sharing</h2>
 					<div class="r-stack">
 						<pre><code style="padding: 1em; border-radius: 8px" class="language-ruby" data-trim data-line-numbers>
 class RodauthMain < RodauthBase
@@ -718,7 +721,7 @@ end
 				</section>
 
 				<section>
-					<h2>React session sharing</h2>
+					<h2 class="r-fit-text">React session sharing</h2>
 					<div class="r-stack">
 						<pre><code style="padding: 1em; border-radius: 8px" class="language-ruby" data-trim data-line-numbers>
 class RodauthController < ApplicationController
@@ -774,7 +777,7 @@ end
 
 				<!-- Deployment: GitHub Actions -->
 				<section>
-					<h2>Deployment: GitHub Actions</h2>
+					<h2 class="r-fit-text">Deployment: GitHub Actions</h2>
 					<p><strong>Build React Job</strong></p>
 
 					<div class="r-stack">
@@ -821,7 +824,7 @@ end
 
 				<!-- Docker Image Integration -->
 				<section>
-					<h2>Deployment: Docker image integration</h2>
+					<h2 class="r-fit-text">Deployment: Docker image integration</h2>
 					<div class="r-stack">
 						<pre class=""><code style="padding: 1em; border-radius: 8px" class="language-dockerfile" data-trim data-line-numbers="">
   # Dockerfile
@@ -865,24 +868,21 @@ end
 					</aside>
 				</section>
 
-				<section>
+				<section style="text-align: left;">
 					<h2 class="r-fit-text">The JS world is overcentralized around React</h2>
-					<div style="text-align: left;">
-						<p>Finding vanilla JS alternatives is sometimes hard — almost impossible.</p>
-						<ul>
-							<li>react-dates (12k stars) – Easepick is archived</li>
-							<li>react-select (28k stars) – closest: Choices.js</li>
-							<li>react-dnd (21k stars)</li>
-							<li>react-tagsinput (1.4k stars)</li>
-						</ul>
-					</div>
+					<p>Finding vanilla JS alternatives is sometimes hard — almost impossible.</p>
+					<ul>
+						<li>react-dates (12k stars) – Easepick is archived</li>
+						<li>react-select (28k stars) – closest: Choices.js</li>
+						<li>react-dnd (21k stars)</li>
+						<li>react-tagsinput (1.4k stars)</li>
+					</ul>
 					<aside class="notes">
 						<p>The JavaScript ecosystem has a React monoculture problem. The best libraries — datepickers, multi-select components, drag-and-drop, tag inputs — are built for React first, React only, React forever. Finding vanilla JS alternatives is genuinely hard. react-dates has 12,000 stars; the main alternative, Easepick, is archived. react-select has 28,000 stars — Choices.js is a distant second with different ergonomics. react-dnd has no real equivalent. This is a concrete constraint that will cost you time when you're building production features.</p>
 					</aside>
 				</section>
 
-				<!-- Turbo-mount -->
-				<section>
+				<section style="text-align: left;">
 					<h2 class="r-fit-text">Turbo Mount</h2>
 					<p><a href="https://github.com/skryukov/turbo-mount">github.com/skryukov/turbo-mount</a></p>
 					<ul>
@@ -895,7 +895,7 @@ end
 				</section>
 
 				<section>
-					<h2>Turbo Mount in action</h2>
+					<h2 class="r-fit-text">Turbo Mount in action</h2>
 					<img src="assets/turbo-mount-1.png" class="r-stretch" />
 					<aside class="notes">
 						<p>Here's how it looks in practice. The chat UI in the center of the screen is a React component mounted via turbo-mount. Everything surrounding it — the navigation, the sidebar, the page layout, the header — is Rails. The user sees a completely seamless experience. There's no visible boundary between the React component and the Rails shell.</p>
@@ -903,7 +903,7 @@ end
 				</section>
 
 				<section>
-					<h2>Turbo Mount in action</h2>
+					<h2 class="r-fit-text">Turbo Mount in action</h2>
 					<img src="assets/turbo-mount-2.png" class="r-stretch" />
 					<aside class="notes">
 						<p>And when you click Schedule Message, a modal opens — rendered by a Rails ViewComponent, with Turbo handling the form submission and response. React and Rails side by side in the same viewport, each doing what it does best. The user never experiences a context shift.</p>
@@ -961,6 +961,14 @@ end
 					<h2>Stimulus controller</h2>
 					<pre><code style="padding: 1em; border-radius: 8px" class="language-ruby" data-trim data-line-numbers>
 class IframeModalController extends Controller {
+	connect () {
+		# ...
+	}
+
+	disconnect () {
+		# ...
+	}
+
   closeEvent(event) {
     window.parent.postMessage('closeModal', '*');
   }
@@ -975,10 +983,14 @@ class IframeModalController extends Controller {
 
     this.closeEvent();
   }
+
+	closeAfterClickEvent (event) {
+		# ...
+	}
 }
 					</code></pre>
 					<aside class="notes">
-						<p>This is the entire Stimulus controller that bridges the Rails iframe to the React parent. When a Turbo form submission completes successfully and the submitter element has the close-on-click data attribute set, it posts a 'closeModal' message to the parent window. The React component listens for window messages and closes the modal in response. Twenty lines of JavaScript. This is the entire cross-framework integration layer. Sometimes the right tool is the boring one.</p>
+						<p>This is the Stimulus controller that bridges the Rails iframe to the React parent. When a Turbo form submission completes successfully and the submitter element has the close-on-click data attribute set, it posts a 'closeModal' message to the parent window. The React component listens for window messages and closes the modal in response. Twenty lines of JavaScript. This is the entire cross-framework integration layer. Sometimes the right tool is the boring one.</p>
 					</aside>
 				</section>
 
@@ -1262,7 +1274,7 @@ export function AlertDestructive() {
 						</li>
 
 					<aside class="notes">
-						<p>And for those who prefer a gem, jet_ui is on GitHub in early prototype stage. Right now it supports two commands: jet_ui:install to set up the library in your project, and jet_ui:eject to copy any component directly into your codebase so you own it completely. Think of it as the shadcn CLI for Rails — you're not locked into our gem's release cycle, you own the code from the moment you eject it.</p>
+
 					</aside>
 				</section>
 
