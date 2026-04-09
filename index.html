@@ -243,7 +243,7 @@
 				</section>
 
 				<!-- Technology choices -->
-				<section style="text-align: left;">
+				<!-- <section style="text-align: left;">
 					<h2>The technology choices we made</h2>
 					<p><strong>Frontend</strong></p>
 					<ul>
@@ -261,10 +261,10 @@
 					<aside class="notes">
 						<p>The stack was very much of its era. Create React App for the frontend — which, by 2024, was deprecated and unmaintained. Redux for state management. React Router. Axios. On the backend, a Rails API serving JSON. Two separate applications communicating over HTTP. Clean separation of concerns — and also the source of constant friction. Every feature lived in two places.</p>
 					</aside>
-				</section>
+				</section> -->
 
 				<!-- The good parts -->
-				<section style="text-align: left;">
+				<!-- <section style="text-align: left;">
 					<h2>The good parts</h2>
 					<p><strong>Rich Interactive UI</strong></p>
 					<ul>
@@ -280,7 +280,7 @@
 					<aside class="notes">
 						<p>To be fair, React genuinely served us well in some areas. The drag-and-drop itinerary builder was complex UI and React handled it well. Hot reloading with CRA was a great developer experience. Component reusability across modules was real. I mention this because I want to be balanced — this isn't a "React is bad" talk. React solved real problems for us. The question is whether those benefits justified the overhead as the product matured.</p>
 					</aside>
-				</section>
+				</section> -->
 
 				<!-- Decision to switch -->
 				<section style="text-align: left;">
@@ -466,7 +466,7 @@
 				</section>
 
 				<!-- What we confirmed -->
-				<section style="text-align: left;">
+				<!-- <section style="text-align: left;">
 					<h2 class="r-fit-text">What we confirmed</h2>
 					<p><strong>A single developer can do everything.</strong></p>
 					<ul>
@@ -483,7 +483,7 @@
 					<aside class="notes">
 						<p>The numbers were hard to argue with. On these Hotwire projects, a single developer could own a complete feature from database schema to deployed UI. Team sizes of one or two developers were shipping features that would have required frontend-backend pairs in React. Features that took weeks now took days. It felt like a SPA but ran like a server-rendered app — fast initial load, no hydration delay, no API round-trips for every interaction.</p>
 					</aside>
-				</section>
+				</section> -->
 
 				<!-- Decision quote -->
 				<section>
@@ -589,7 +589,9 @@
 					<pre><code style="padding: 1em; border-radius: 8px" class="language-ruby" data-trim data-line-numbers>
 Rails.application.routes.draw do
   constraints DomainConstraint.domain(:account) do
-    # ...
+
+	  # ...
+
     constraints ->(r) { !r.xhr? && r.format.html? } do
       get "/*path", to: "react#index"
     end
